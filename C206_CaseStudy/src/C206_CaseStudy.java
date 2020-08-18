@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class C206_CaseStudy {
 	
@@ -14,9 +15,15 @@ public class C206_CaseStudy {
 	private static final int OPTION_EXIT = 7;
 	
 	public static int userOption = 0;
-
+	
+	public static ArrayList<Order> orderList;
+	public static String userName;
+	public static boolean takeAway;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		orderList = new ArrayList<Order>();
 		
 		int option = 0;
 		
@@ -28,7 +35,7 @@ public class C206_CaseStudy {
 			}
 		}
 		
-		while (option != 6) {
+		while (option != 7) {
 			
 			optionMenu();
 			option = Helper.readInt("Enter an option > ");
@@ -41,6 +48,21 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_ORDER) {
 				//Do code for Order here
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "any other no. to cancel"));
+				int orderOption = Helper.readInt("Option > ");
+				int addOd = 1;
+				int remOd = 2;
+				int viewOd = 3;
+				if(orderOption == addOd) {
+					addOrder(orderList);
+				} else if(orderOption == remOd) {
+					deleteOrder(orderList);
+				} else if(orderOption == viewOd) {
+					viewAllOrder(orderList);
+				} else {
+					System.out.println("Invalid Choice!");
+				}
+				
 				
 			} else if(option == OPTION_PURCHASEORDER) {
 				//Do code for Purchase Order here
@@ -89,6 +111,17 @@ public class C206_CaseStudy {
 	
 	//Create all the methods here \/ \/ \/
 	
+	public static void addOrder(ArrayList<Order> order) {
+
+	}
+	
+	public static void deleteOrder(ArrayList<Order> order) {
+		
+	}
+	
+	public static void viewAllOrder(ArrayList<Order> order) {
+		
+	}
 	
 	
 }
