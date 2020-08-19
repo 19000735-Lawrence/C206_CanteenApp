@@ -64,7 +64,16 @@ public class C206_CaseStudyTest {
 	@Test
 	public void deleteOrderTest() {
 		//("Not yet implemented"); 
-
+		menuListTest.add(menuItem1);
+		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
+		
+		C206_CaseStudy.orderItem = orderItem1;
+		C206_CaseStudy.addOrder(orderListTest);
+		assertEquals("Test that arraylist size is 1", 1, orderListTest.size());
+		
+		C206_CaseStudy.userName = "Bob";
+		C206_CaseStudy.deleteOrder(orderListTest);
+		assertEquals("Test that arraylist size is 0", 0, orderListTest.size());
 	}
 	
 	@Test

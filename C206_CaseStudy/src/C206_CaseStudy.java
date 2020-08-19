@@ -91,6 +91,7 @@ public class C206_CaseStudy {
 					addOrder(orderList);
 
 				} else if(orderOption == remOd) {
+					userName = Helper.readString("Enter username to delete orders from > ");
 					deleteOrder(orderList);
 				} else if(orderOption == viewOd) {
 					viewAllOrder(orderList);
@@ -151,7 +152,12 @@ public class C206_CaseStudy {
 	}
 	
 	public static void deleteOrder(ArrayList<Order> order) {
-		
+		for(int i = 0; i < order.size(); i++) {
+			if(order.get(i).getUsername().equalsIgnoreCase(userName) && order.get(i) != null) {
+				order.remove(i);
+				System.out.println("Order removed!");
+			}
+		}
 	}
 	
 	public static void viewAllOrder(ArrayList<Order> order) {
