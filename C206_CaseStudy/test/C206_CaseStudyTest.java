@@ -39,7 +39,7 @@ public class C206_CaseStudyTest {
 	
 	@Test
 	public void addOrderTest() {
-		//("Not yet implemented"); 
+		
 		assertNotNull("Test if there is valid arraylist to add to", orderListTest);
 		
 		menuListTest.add(menuItem1);
@@ -69,8 +69,15 @@ public class C206_CaseStudyTest {
 	
 	@Test
 	public void viewOrderTest() {
-		//("Not yet implemented"); 
+		
+		menuListTest.add(menuItem1);
+		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
+		
+		C206_CaseStudy.orderItem = orderItem1;
+		C206_CaseStudy.addOrder(orderListTest);
 
+		assertNotNull("Test that there are things to output to method", orderListTest.get(0).toString());
+		
 	}
 	
 	

@@ -48,11 +48,11 @@ public class Order {
 	
 	public String toString() {
 		String output = "";
-		output += String.format("%s-20%s-15%s-10%-25s%-15s%-10s", "Username", "Status", "Takeaway", "Items", "Category", "Price");
-		output += String.format("%s-20%s-15%s-10%-25s%-15s%-10s", "========", "======", "========", "=====", "========", "=====");
+		output += String.format("%-20s%-15s%-10s%-25s%-15s%-10s\n", "Username", "Status", "Takeaway", "Items", "Category", "Price");
+		output += String.format("%-20s%-15s%-10s%-25s%-15s%-10s\n", "========", "======", "========", "=====", "========", "=====");
 		if(items != null) {
 			for(int i = 0; i < items.size(); i++) {
-				output += String.format("%s-20%s-15%s-10%-25s%-15s$%-10s", this.username, this.status, Boolean.toString(this.takeaway), this.items.get(i).getName(), this.items.get(i).getCategory(), Double.toString(this.items.get(i).getPrice()));
+				output += String.format("%-20s%-15s%-10s%-25s%-15s$%-10s\n", this.username, this.status, Boolean.toString(this.takeaway), this.items.get(i).getName(), this.items.get(i).getCategory(), Double.toString(this.items.get(i).getPrice()));
 			}
 		} else {
 			output = "There are no pending orders.";

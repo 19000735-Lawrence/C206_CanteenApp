@@ -71,7 +71,7 @@ public class C206_CaseStudy {
 					userName = Helper.readString("Username > ");
 					status = "recieved";
 					takeAway = Helper.readBoolean("Takeaway? >(Y/N) ");
-					orderInput = null;
+					orderInput.clear();
 					
 					String out = String.format("%-5s%-25s%-15s%-10s\n", "no.", "Name", "Category", "Price");
 					out += String.format("%-5s%-25s%-15s%-10s\n", "===", "====", "========", "=====");
@@ -87,9 +87,9 @@ public class C206_CaseStudy {
 					if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
 						orderInput.add(menuItem.get(chce-1));
 						orderItem = new Order(userName, status, takeAway, orderInput);
-					}
-					
+					}		
 					addOrder(orderList);
+
 				} else if(orderOption == remOd) {
 					deleteOrder(orderList);
 				} else if(orderOption == viewOd) {
@@ -155,7 +155,11 @@ public class C206_CaseStudy {
 	}
 	
 	public static void viewAllOrder(ArrayList<Order> order) {
-		
+		for(int i = 0; i < order.size(); i++) {
+			if(order.get(i) != null) {
+				System.out.println(order.get(i).toString());
+			}
+		}
 	}
 	
 	
