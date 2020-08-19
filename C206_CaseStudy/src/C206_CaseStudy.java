@@ -16,14 +16,28 @@ public class C206_CaseStudy {
 	
 	public static int userOption = 0;
 	
+	
+	public static ArrayList<MenuItem> menuItem;
+	
 	public static ArrayList<Order> orderList;
+	public static ArrayList<MenuItem> orderInput;
+	public static Order orderItem;
+	
 	public static String userName;
+	public static String status;
 	public static boolean takeAway;
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		menuItem = new ArrayList<MenuItem>();
 		orderList = new ArrayList<Order>();
+		orderInput = new ArrayList<MenuItem>();
+		
+		
+		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
+		menuItem.add(new MenuItem("Crab", "Sea Food", 5.99));
 		
 		int option = 0;
 		
@@ -54,6 +68,27 @@ public class C206_CaseStudy {
 				int remOd = 2;
 				int viewOd = 3;
 				if(orderOption == addOd) {
+					userName = Helper.readString("Username > ");
+					status = "recieved";
+					takeAway = Helper.readBoolean("Takeaway? >(Y/N) ");
+					orderInput = null;
+					
+					String out = String.format("%-5s%-25s%-15s%-10s\n", "no.", "Name", "Category", "Price");
+					out += String.format("%-5s%-25s%-15s%-10s\n", "===", "====", "========", "=====");
+					if(menuItem != null) {
+						for(int i = 0; i < menuItem.size(); i++) {
+							out += String.format("%-5d%-50s\n",i + 1 , menuItem.get(i).toString());
+						}
+					} else {
+						out = "No Items Available!";
+					}
+					System.out.println(out);
+					int chce = Helper.readInt("Enter Order Choice > ");
+					if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
+						orderInput.add(menuItem.get(chce-1));
+						orderItem = new Order(userName, status, takeAway, orderInput);
+					}
+					
 					addOrder(orderList);
 				} else if(orderOption == remOd) {
 					deleteOrder(orderList);
@@ -112,7 +147,7 @@ public class C206_CaseStudy {
 	//Create all the methods here \/ \/ \/
 	
 	public static void addOrder(ArrayList<Order> order) {
-
+		order.add(orderItem);
 	}
 	
 	public static void deleteOrder(ArrayList<Order> order) {

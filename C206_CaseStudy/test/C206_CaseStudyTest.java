@@ -9,10 +9,25 @@ import org.junit.Test;
 
 public class C206_CaseStudyTest {
 	
+	private static ArrayList<Order> orderListTest;
+	private static ArrayList<MenuItem> menuListTest;
+	
+	private static MenuItem menuItem1;
+	private static MenuItem menuItem2;
+	
+	private static Order orderItem1;
+	private static Order orderItem2;
 
 	@Before
 	public void setUp() throws Exception {
-
+		orderListTest = new ArrayList<Order>();
+		menuListTest = new ArrayList<MenuItem>();
+		
+		menuItem1 = new MenuItem("Cheese Burger", "Fast Food", 3.99);
+		menuItem2 = new MenuItem("Crab", "Sea Food", 5.99);
+		
+//		orderItem1 = new Order("Bob", "Testing", false, menuListTest);  //for ref
+//		orderItem2 = new Order("Rob", "Testing", true, menuListTest);
 		
 	}
 
@@ -25,7 +40,25 @@ public class C206_CaseStudyTest {
 	@Test
 	public void addOrderTest() {
 		//("Not yet implemented"); 
-
+		assertNotNull("Test if there is valid arraylist to add to", orderListTest);
+		
+		menuListTest.add(menuItem1);
+		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
+		
+		C206_CaseStudy.orderItem = orderItem1;
+		C206_CaseStudy.addOrder(orderListTest);
+		assertEquals("Test that arraylist size is 1", 1, orderListTest.size());
+		assertSame("Test that Order is added", orderItem1, orderListTest.get(0));
+		
+		menuListTest.clear();
+		menuListTest.add(menuItem2);
+		orderItem2 = new Order("Rob", "Testing", true, menuListTest);
+		
+		C206_CaseStudy.orderItem = orderItem2;
+		C206_CaseStudy.addOrder(orderListTest);
+		assertEquals("Test that arraylist size is 2", 2, orderListTest.size());
+		assertSame("Test that Order is added", orderItem2, orderListTest.get(1));
+		
 	}
 
 	@Test
