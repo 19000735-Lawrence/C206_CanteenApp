@@ -107,7 +107,5 @@ public class C206_CaseStudyTest {
 		output += String.format("%-10s %-30s %-10s\n", "Crab", "Seafood", 5.99);
 		
 		assertEquals("Test that ViewAllCamcorderlist", output, allMenu);
-	} 
-	
-	
+	}
 }

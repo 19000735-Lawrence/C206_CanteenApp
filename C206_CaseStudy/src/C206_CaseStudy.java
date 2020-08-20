@@ -190,7 +190,6 @@ public class C206_CaseStudy {
 			output += retrieveMenuItems(menuItem);
 			System.out.println(output);
 		}
-		
 	}
 	
 	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem menuItem1) {
