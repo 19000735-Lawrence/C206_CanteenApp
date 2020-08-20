@@ -145,13 +145,19 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 	
+	public static void setHeader(String header) {
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
+	}
+	
 	//Create all the methods here \/ \/ \/
 	
-	public static void addOrder(ArrayList<Order> order) {
+	public static void addOrder(ArrayList<Order> order) { // Lawrence 
 		order.add(orderItem);
 	}
 	
-	public static void deleteOrder(ArrayList<Order> order) {
+	public static void deleteOrder(ArrayList<Order> order) { // Lawrence
 		for(int i = 0; i < order.size(); i++) {
 			if(order.get(i).getUsername().equalsIgnoreCase(userName) && order.get(i) != null) {
 				order.remove(i);
@@ -160,7 +166,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static void viewAllOrder(ArrayList<Order> order) {
+	public static void viewAllOrder(ArrayList<Order> order) { // Lawrence
 		for(int i = 0; i < order.size(); i++) {
 			if(order.get(i) != null) {
 				System.out.println(order.get(i).toString());
@@ -168,5 +174,26 @@ public class C206_CaseStudy {
 		}
 	}
 	
+	public static String retrieveMenuItems(ArrayList<MenuItem> menu) { // Keagan
+		String output = "";
+		for (int i = 0; i < menu.size(); i++) {
+			output = String.format("%-10s %-30s $-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
+					menu.get(i).getPrice());
+		}
+		return output;
+	}
+	
+	public static void viewAllMenuItems(ArrayList<MenuItem> menu) { // Keagan
+		for (int i = 0; i < menuItem.size(); i++) {
+			C206_CaseStudy.setHeader("MENU ITEM LIST");
+			String output = String.format("%-10s %-30s %-10s\n", "NAME", "CATEGORY", "PRICE");
+			output += retrieveMenuItems(menuItem);
+			System.out.println(output);
+		}
+	}
+	
+	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem menuItem1) {
+		menu.addAll(menuItem);
+	}
 	
 }

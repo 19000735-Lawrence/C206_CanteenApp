@@ -38,7 +38,7 @@ public class C206_CaseStudyTest {
 	// Test Codes here \/ \/ \/
 	
 	@Test
-	public void addOrderTest() {
+	public void addOrderTest() { // Lawrence
 		
 		assertNotNull("Test if there is valid arraylist to add to", orderListTest);
 		
@@ -62,7 +62,7 @@ public class C206_CaseStudyTest {
 	}
 
 	@Test
-	public void deleteOrderTest() {
+	public void deleteOrderTest() { // Lawrence
 		//("Not yet implemented"); 
 		menuListTest.add(menuItem1);
 		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
@@ -77,7 +77,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void viewOrderTest() {
+	public void viewOrderTest() { // Lawrence
 		
 		menuListTest.add(menuItem1);
 		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
@@ -87,6 +87,26 @@ public class C206_CaseStudyTest {
 
 		assertNotNull("Test that there are things to output to method", orderListTest.get(0).toString());
 		
+	}
+	
+	@Test
+	public void viewMenuTest() { // Keagan
+		
+		assertNotNull("Test if there is valid arraylist to retreive item from", menuListTest);
+		
+		String allMenu = C206_CaseStudy.retrieveMenuItems(menuListTest);
+		String output = "";
+		assertEquals("Test that the retrieved menuListTest is empty?", output, allMenu);
+		
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem1);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
+		assertEquals("Test that MenuItem arraylist size is 2", 2, menuListTest.size());
+		
+		allMenu = C206_CaseStudy.retrieveMenuItems(menuListTest);
+		output = String.format("%-10s %-30s %-10s\n", "Cheese Burger", "Fast food", 3.99);
+		output += String.format("%-10s %-30s %-10s\n", "Crab", "Seafood", 5.99);
+		
+		assertEquals("Test that ViewAllCamcorderlist", output, allMenu);
 	}
 	
 	
