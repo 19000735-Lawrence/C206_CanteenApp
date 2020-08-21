@@ -72,7 +72,7 @@ public class C206_CaseStudy {
 					userName = Helper.readString("Username > ");
 					status = "recieved";
 					takeAway = Helper.readBoolean("Takeaway? >(Y/N) ");
-					orderInput.clear();
+					ArrayList<MenuItem> orderInput1 = new ArrayList<MenuItem>();
 					
 					String out = String.format("%-5s%-25s%-15s%-10s\n", "no.", "Name", "Category", "Price");
 					out += String.format("%-5s%-25s%-15s%-10s\n", "===", "====", "========", "=====");
@@ -84,12 +84,14 @@ public class C206_CaseStudy {
 						out = "No Items Available!";
 					}
 					System.out.println(out);
-					int chce = Helper.readInt("Enter Order Choice > ");
-					if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
-						orderInput.add(menuItem.get(chce-1));
-						orderItem = new Order(userName, status, takeAway, orderInput);
-					}		
-					addOrder(orderList);
+					int chce = 0;
+					while(chce != 999) {
+						chce = Helper.readInt("Enter Order Choice >(999 to submit) ");
+						if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
+							orderInput1.add(menuItem.get(chce-1));
+						}
+					}
+					addOrder(orderList, new Order(userName, status, takeAway, orderInput1));
 
 				} else if(orderOption == remOd) {
 					userName = Helper.readString("Enter username to delete orders from > ");
@@ -154,8 +156,8 @@ public class C206_CaseStudy {
 	
 	//Create all the methods here \/ \/ \/
 	
-	public static void addOrder(ArrayList<Order> order) { // Lawrence 
-		order.add(orderItem);
+	public static void addOrder(ArrayList<Order> order, Order orderIt) { // Lawrence 
+		order.add(orderIt);
 	}
 	
 	public static void deleteOrder(ArrayList<Order> order) { // Lawrence
@@ -168,6 +170,10 @@ public class C206_CaseStudy {
 	}
 	
 	public static void viewAllOrder(ArrayList<Order> order) { // Lawrence
+		String output = "";
+		output += String.format("%-20s%-15s%-10s%-25s%-15s%-10s\n", "Username", "Status", "Takeaway", "Items", "Category", "Price");
+		output += String.format("%-20s%-15s%-10s%-25s%-15s%-10s\n", "========", "======", "========", "=====", "========", "=====");
+		System.out.println(output);
 		for(int i = 0; i < order.size(); i++) {
 			if(order.get(i) != null) {
 				System.out.println(order.get(i).toString());
