@@ -57,11 +57,14 @@ public class C206_CaseStudy {
 			
 			if(option == OPTION_MENUITEM) {
 				//Do code for Menu Item here
+				C206_CaseStudy.setHeader("ADD");
+				MenuItem mi = addMenu();
+				C206_CaseStudy.addMenuItem(menuItem, mi);
 				
 			} else if(option == OPTION_ACCOUNT) {
 				//Do code for Account here
 				
-			} else if(option == OPTION_ORDER) {
+			} else if(option == OPTION_ORDER) { // Lawrence
 				//Do code for Order here
 				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "any other no. to cancel"));
 				int orderOption = Helper.readInt("Option > ");
@@ -109,7 +112,7 @@ public class C206_CaseStudy {
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
 				
-			} else if(option == OPTION_USERTYPE) {
+			} else if(option == OPTION_USERTYPE) { // Lawrence
 				while(userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
 					userTypeMenu();
 					userOption = Helper.readInt("Enter User type > ");
