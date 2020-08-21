@@ -98,16 +98,30 @@ public class C206_CaseStudyTest {
 		String output = "";
 		assertEquals("Test that the retrieved menuListTest is empty?", output, allMenu);
 		
-		menuListTest.add(menuItem1);
-		menuListTest.add(menuItem2);
-		C206_CaseStudy.addMenuItem(menuListTest);
-		assertNotNull("Test that there are items to output from", menuListTest.get(0).toString());
+//		menuListTest.add(menuItem1);
+//		menuListTest.add(menuItem2);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem1);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
+//		assertNotNull("Test that there are items to output from", menuListTest.get(0).toString());
+		assertEquals("Test that the menuItemTest arraylist is 2", 2, menuListTest.size());
+	}
+	
+	@Test
+	public void addMenuTest() { // Keagan
 		
-//		allMenu = C206_CaseStudy.retrieveMenuItems(menuListTest);
-//		output = String.format("%-10s %-30s %-10s\n", "Cheese Burger", "Fast food", 3.99);
-//		output += String.format("%-10s %-30s %-10s\n", "Crab", "Seafood", 5.99);
-//		
-//		assertEquals("Test that ViewAllCamcorderlist", output, allMenu);
+		assertNotNull("Test if there is valid arraylist to add to", menuListTest);
+		
+//		menuListTest.add(menuItem1);
+//		menuListTest.add(menuItem2);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem1);
+		assertEquals("Test that arraylist is 1", 1, menuListTest.size());
+		assertSame("Check that menuItem1 is added", menuItem1, menuListTest.get(0));
+		
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
+		assertEquals("Test that arraylist is 2", 2, menuListTest.size());
+		assertSame("Check that menuItem1 is added", menuItem2, menuListTest.get(1));
+		
+		
 	}
 	
 }

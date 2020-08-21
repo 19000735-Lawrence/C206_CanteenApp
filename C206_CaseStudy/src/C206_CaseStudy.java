@@ -193,7 +193,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static void addMenuItem(ArrayList<MenuItem> menu) {
+	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) {
 		menu.add(menuItems);
 	}
 	
