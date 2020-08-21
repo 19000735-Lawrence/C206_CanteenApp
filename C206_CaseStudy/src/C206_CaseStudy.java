@@ -21,8 +21,10 @@ public class C206_CaseStudy {
 	
 	public static ArrayList<Order> orderList;
 	public static ArrayList<MenuItem> orderInput;
+	public static ArrayList<PurchaseOrder> purchaseList;
 	public static Order orderItem;
 	public static MenuItem menuItems;
+	public static PurchaseOrder purchaseOrders;
 	
 	public static String userName;
 	public static String status;
@@ -35,6 +37,7 @@ public class C206_CaseStudy {
 		menuItem = new ArrayList<MenuItem>();
 		orderList = new ArrayList<Order>();
 		orderInput = new ArrayList<MenuItem>();
+		purchaseList = new ArrayList<PurchaseOrder>();
 		
 		
 		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
@@ -120,6 +123,11 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PURCHASEORDER) {
 				//Do code for Purchase Order here
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "any other no. to cancel"));
+				int purchaseOption = Helper.readInt("Option > ");
+				int addPo = 1;
+				int remPo = 2;
+				int viewPo = 3;
 				
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
