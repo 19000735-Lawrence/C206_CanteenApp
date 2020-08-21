@@ -58,8 +58,20 @@ public class C206_CaseStudy {
 			if(option == OPTION_MENUITEM) {
 				//Do code for Menu Item here
 				C206_CaseStudy.setHeader("ADD");
-				MenuItem mi = addMenu();
-				C206_CaseStudy.addMenuItem(menuItem, mi);
+				System.out.println(String.format("%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item"));
+				int menuOption = Helper.readInt("Option > ");
+				int viewMenu = 1;
+				int addMenu = 2;
+				int delMenu = 3;
+				if (menuOption == viewMenu) {
+					viewAllMenuItems(menuItem);
+					
+				} else if (menuOption == addMenu) {
+					MenuItem mi = addMenu();
+					C206_CaseStudy.addMenuItem(menuItem, mi);
+					
+				}
+				
 				
 			} else if(option == OPTION_ACCOUNT) {
 				//Do code for Account here
