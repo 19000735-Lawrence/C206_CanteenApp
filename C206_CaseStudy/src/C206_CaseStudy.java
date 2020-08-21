@@ -129,18 +129,21 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PURCHASEORDER) {
 				//Do code for Purchase Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "any other no. to cancel"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List"));
 				int purchaseOption = Helper.readInt("Option > ");
 				int addPo = 1;
 				int remPo = 2;
 				int viewPo = 3;
 				if (purchaseOption == viewPo) {
-	
-					
+					viewAllPurchaseOrders(purchaseList);
+
 				} else if (purchaseOption == addPo) {
 					PurchaseOrder pl = addPurchase();
 					C206_CaseStudy.addPurchaseOrder(purchaseList, pl);
 					
+				}	else if(purchaseOption == remPo) {
+					PurchaseOrder pl = deletePurchase();
+					C206_CaseStudy.deletePurchaseOrder(purchaseList, pl);
 				}
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
@@ -270,5 +273,37 @@ public class C206_CaseStudy {
 		System.out.println("Purchase added!");
 	}
 	
+	public static PurchaseOrder deletePurchase() { // Jun Kai
+		ingredientname = Helper.readString("Enter ingredient to remove: ");
+		
+        PurchaseOrder pl= new PurchaseOrder(ingredientname);
+		return pl;
+	}
+	
+	public static void deletePurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+		for (int i = 0; i < purchase.size(); i++) {
+			if (purchase.get(i).getIngredientname().equalsIgnoreCase(ingredientname) && purchase.get(i) != null) {
+				purchase.remove(i);
+				System.out.println("Ingredient from Purchase order removed!");
+			} 
+		}
+	}
+	
+	public static String retrievePurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		String output = "";
+		for (int i = 0; i < purchase.size(); i++) {
+			output = String.format("%-10s", purchase.get(i).getIngredientname()); 
+		}
+		return output;
+	}
+	
+	public static void viewAllPurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		for (int i = 0; i < purchaseList.size(); i++) {
+			C206_CaseStudy.setHeader("Purchase Order LIST");
+			String output = String.format("%-10s", "Ingredients");
+			output += retrievePurchaseOrders(purchaseList);
+			System.out.println(output);
+		}
+	}
 
 }
