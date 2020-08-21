@@ -178,7 +178,7 @@ public class C206_CaseStudy {
 		String output = "";
 		for (int i = 0; i < menu.size(); i++) {
 			output = String.format("%-10s %-30s $-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
-					menu.get(i).getPrice());
+					menu.get(i).getPrice()); 
 		}
 		return output;
 	}

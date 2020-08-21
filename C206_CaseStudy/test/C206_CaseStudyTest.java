@@ -108,4 +108,5 @@ public class C206_CaseStudyTest {
 		
 		assertEquals("Test that ViewAllCamcorderlist", output, allMenu);
 	}
+	
 }
