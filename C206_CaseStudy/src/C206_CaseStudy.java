@@ -55,26 +55,13 @@ public class C206_CaseStudy {
 			optionMenu();
 			option = Helper.readInt("Enter an option > ");
 			
-			if(option == OPTION_MENUITEM) { // Keagan
+			if(option == OPTION_MENUITEM) {
 				//Do code for Menu Item here
-				System.out.println(String.format("%-10s\n%-10s\n%-20s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item"));
-				int menuOption = Helper.readInt("Option > ");
-				int viewMenu = 1;
-				int addMenu = 2;
-				int delMenu = 3;
-				if (menuOption == viewMenu) {
-					viewAllMenuItems(menuItem);
-					
-				} else if (menuOption == addMenu) {
-					C206_CaseStudy.setHeader("ADD");
-					MenuItem mi = addMenu();
-					C206_CaseStudy.addMenuItem(menuItem, mi);
-				}
 				
 			} else if(option == OPTION_ACCOUNT) {
 				//Do code for Account here
 				
-			} else if(option == OPTION_ORDER) { // Lawrence
+			} else if(option == OPTION_ORDER) {
 				//Do code for Order here
 				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "any other no. to cancel"));
 				int orderOption = Helper.readInt("Option > ");
@@ -191,7 +178,7 @@ public class C206_CaseStudy {
 	public static String retrieveMenuItems(ArrayList<MenuItem> menu) { // Keagan
 		String output = "";
 		for (int i = 0; i < menu.size(); i++) {
-			output = String.format("%-10s %-30s %-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
+			output = String.format("%-10s %-30s $-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
 					menu.get(i).getPrice()); 
 		}
 		return output;
