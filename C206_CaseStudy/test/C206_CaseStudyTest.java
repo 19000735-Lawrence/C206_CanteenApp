@@ -45,8 +45,8 @@ public class C206_CaseStudyTest {
 		menuListTest.add(menuItem1);
 		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
 		
-		C206_CaseStudy.orderItem = orderItem1;
-		C206_CaseStudy.addOrder(orderListTest);
+
+		C206_CaseStudy.addOrder(orderListTest, orderItem1);
 		assertEquals("Test that arraylist size is 1", 1, orderListTest.size());
 		assertSame("Test that Order is added", orderItem1, orderListTest.get(0));
 		
@@ -54,8 +54,8 @@ public class C206_CaseStudyTest {
 		menuListTest.add(menuItem2);
 		orderItem2 = new Order("Rob", "Testing", true, menuListTest);
 		
-		C206_CaseStudy.orderItem = orderItem2;
-		C206_CaseStudy.addOrder(orderListTest);
+
+		C206_CaseStudy.addOrder(orderListTest, orderItem2);
 		assertEquals("Test that arraylist size is 2", 2, orderListTest.size());
 		assertSame("Test that Order is added", orderItem2, orderListTest.get(1));
 		
@@ -67,8 +67,8 @@ public class C206_CaseStudyTest {
 		menuListTest.add(menuItem1);
 		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
 		
-		C206_CaseStudy.orderItem = orderItem1;
-		C206_CaseStudy.addOrder(orderListTest);
+
+		C206_CaseStudy.addOrder(orderListTest, orderItem1);
 		assertEquals("Test that arraylist size is 1", 1, orderListTest.size());
 		
 		C206_CaseStudy.userName = "Bob";
@@ -82,8 +82,8 @@ public class C206_CaseStudyTest {
 		menuListTest.add(menuItem1);
 		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
 		
-		C206_CaseStudy.orderItem = orderItem1;
-		C206_CaseStudy.addOrder(orderListTest);
+		
+		C206_CaseStudy.addOrder(orderListTest, orderItem1);
 
 		assertNotNull("Test that there are things to output to method", orderListTest.get(0).toString());
 		
