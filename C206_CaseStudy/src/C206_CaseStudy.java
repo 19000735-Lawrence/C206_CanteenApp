@@ -34,6 +34,8 @@ public class C206_CaseStudy {
 	public static String category;
 	public static double price;
 	
+	public static String ingredientname;
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -132,7 +134,14 @@ public class C206_CaseStudy {
 				int addPo = 1;
 				int remPo = 2;
 				int viewPo = 3;
-				
+				if (purchaseOption == viewPo) {
+	
+					
+				} else if (purchaseOption == addPo) {
+					PurchaseOrder pl = addPurchase();
+					C206_CaseStudy.addPurchaseOrder(purchaseList, pl);
+					
+				}
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
 				
@@ -249,4 +258,17 @@ public class C206_CaseStudy {
 		}
 	}
 	
+	public static PurchaseOrder addPurchase() { // Jun Kai
+		ingredientname = Helper.readString("Enter ingredient to purchase: ");
+		
+        PurchaseOrder pl= new PurchaseOrder(ingredientname);
+		return pl;
+	}
+	
+	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+		purchaseList.add(pl);
+		System.out.println("Purchase added!");
+	}
+	
+
 }
