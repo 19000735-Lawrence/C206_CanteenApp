@@ -131,7 +131,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void deleteMenuTest() {
+	public void deleteMenuTest() { // Keagan
 		
 		assertNotNull("Test if there is valid arraylist to delete from", menuListTest);
 		
