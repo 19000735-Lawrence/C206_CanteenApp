@@ -22,6 +22,7 @@ public class C206_CaseStudy {
 	public static ArrayList<Order> orderList;
 	public static ArrayList<MenuItem> orderInput;
 	public static Order orderItem;
+	public static MenuItem menuItems;
 	
 	public static String userName;
 	public static String status;
@@ -192,8 +193,8 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem menuItem1) {
-		menu.addAll(menuItem);
+	public static void addMenuItem(ArrayList<MenuItem> menu) {
+		menu.add(menuItems);
 	}
 	
 }
