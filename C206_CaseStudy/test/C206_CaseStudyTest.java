@@ -120,6 +120,12 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
 		assertEquals("Test that arraylist is 2", 2, menuListTest.size());
 		assertSame("Check that menuItem1 is added", menuItem2, menuListTest.get(1));
+	}
+	
+	@Test
+	public void deleteMenuTest() {
+		
+		assertNotNull("Test if there is valid arraylist to delete from", menuListTest);
 		
 		
 	}

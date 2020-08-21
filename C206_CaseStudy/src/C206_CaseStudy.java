@@ -30,6 +30,10 @@ public class C206_CaseStudy {
 	public static String status;
 	public static boolean takeAway;
 	
+	public static String name;
+	public static String category;
+	public static double price;
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -223,17 +227,26 @@ public class C206_CaseStudy {
 	}
 	
 	public static MenuItem addMenu() { // Keagan
-		String name = Helper.readString("Enter menu name: ");
-		String cat = Helper.readString("Enter category: ");
-		double price = Helper.readDouble("Enter price: ");
+		name = Helper.readString("Enter menu name: ");
+		category = Helper.readString("Enter category: ");
+		price = Helper.readDouble("Enter price: ");
 		
-		MenuItem mi = new MenuItem(name, cat, price);
+		MenuItem mi = new MenuItem(name, category, price);
 		return mi;
 	}
 	
 	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) { // Keagan
 		menuItem.add(mi);
 		System.out.println("Menu Item added!");
+	}
+	
+	public static void deleteMenuItem(ArrayList<MenuItem> menu, MenuItem mi) { // Keagan
+		for (int i = 0; i < menu.size(); i++) {
+			if (menu.get(i).getName().equalsIgnoreCase(name) && menu.get(i) != null) {
+				menu.remove(i);
+				System.out.println("Menu Item removed!");
+			}
+		}
 	}
 	
 }
