@@ -55,13 +55,26 @@ public class C206_CaseStudy {
 			optionMenu();
 			option = Helper.readInt("Enter an option > ");
 			
-			if(option == OPTION_MENUITEM) {
+			if(option == OPTION_MENUITEM) { // Keagan
 				//Do code for Menu Item here
+				System.out.println(String.format("%-10s\n%-10s\n%-20s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item"));
+				int menuOption = Helper.readInt("Option > ");
+				int viewMenu = 1;
+				int addMenu = 2;
+				int delMenu = 3;
+				if (menuOption == viewMenu) {
+					viewAllMenuItems(menuItem);
+					
+				} else if (menuOption == addMenu) {
+					C206_CaseStudy.setHeader("ADD");
+					MenuItem mi = addMenu();
+					C206_CaseStudy.addMenuItem(menuItem, mi);
+				}
 				
 			} else if(option == OPTION_ACCOUNT) {
 				//Do code for Account here
 				
-			} else if(option == OPTION_ORDER) {
+			} else if(option == OPTION_ORDER) { // Lawrence
 				//Do code for Order here
 				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "any other no. to cancel"));
 				int orderOption = Helper.readInt("Option > ");
@@ -178,7 +191,7 @@ public class C206_CaseStudy {
 	public static String retrieveMenuItems(ArrayList<MenuItem> menu) { // Keagan
 		String output = "";
 		for (int i = 0; i < menu.size(); i++) {
-			output = String.format("%-10s %-30s $-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
+			output = String.format("%-10s %-30s %-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
 					menu.get(i).getPrice()); 
 		}
 		return output;
@@ -193,8 +206,18 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) {
-		menu.add(menuItems);
+	public static MenuItem addMenu() { // Keagan
+		String name = Helper.readString("Enter menu name: ");
+		String cat = Helper.readString("Enter category: ");
+		double price = Helper.readDouble("Enter price: ");
+		
+		MenuItem mi = new MenuItem(name, cat, price);
+		return mi;
+	}
+	
+	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) { // Keagan
+		menuItem.add(mi);
+		System.out.println("Menu Item added!");
 	}
 	
 }

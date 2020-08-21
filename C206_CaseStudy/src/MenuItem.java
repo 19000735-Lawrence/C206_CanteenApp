@@ -36,7 +36,7 @@ public class MenuItem {
 	}
 	
 	public String toString() {
-		String output = String.format("%-25s%-15s%-10.2f", this.name, this.category, this.price);
+		String output = String.format("%-25s %-15s %-10.2f", this.name, this.category, this.price);
 		return output;
 	}
 	
