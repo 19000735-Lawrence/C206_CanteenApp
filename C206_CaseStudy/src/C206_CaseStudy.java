@@ -220,11 +220,11 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static String retrieveMenuItems(ArrayList<MenuItem> menu) { // Keagan
+	public static String retrieveMenuItems(ArrayList<MenuItem> menuItem) { // Keagan
 		String output = "";
-		for (int i = 0; i < menu.size(); i++) {
-			output = String.format("%-10s %-30s $-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
-					menu.get(i).getPrice()); 
+		for (int i = 0; i < menuItem.size(); i++) {
+			output = String.format("%-10s %-30s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), 
+					menuItem.get(i).getPrice()); 
 		}
 		return output;
 	}
@@ -247,7 +247,7 @@ public class C206_CaseStudy {
 		return mi;
 	}
 	
-	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) { // Keagan
+	public static void addMenuItem(ArrayList<MenuItem> menuItem, MenuItem mi) { // Keagan
 		menuItem.add(mi);
 		System.out.println("Menu Item added!");
 	}
