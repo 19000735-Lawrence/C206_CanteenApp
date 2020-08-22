@@ -64,7 +64,7 @@ public class C206_CaseStudy {
 			optionMenu();
 			option = Helper.readInt("Enter an option > ");
 			
-			if(option == OPTION_MENUITEM) {
+			if(option == OPTION_MENUITEM) { // Keagan
 				//Do code for Menu Item here
 				C206_CaseStudy.setHeader("ADD");
 				System.out.println(String.format("%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item"));
@@ -78,6 +78,13 @@ public class C206_CaseStudy {
 				} else if (menuOption == addMenu) {
 					MenuItem mi = addMenu();
 					C206_CaseStudy.addMenuItem(menuItem, mi);
+					
+				} else if (menuOption == delMenu) {
+					name = Helper.readString("Enter menu item name to delete from list > ");
+					deleteMenuItem(menuItem);
+					
+				} else {
+					System.out.println("Invalid choice");
 					
 				}
 				
@@ -252,10 +259,10 @@ public class C206_CaseStudy {
 		System.out.println("Menu Item added!");
 	}
 	
-	public static void deleteMenuItem(ArrayList<MenuItem> menu, MenuItem mi) { // Keagan
-		for (int i = 0; i < menu.size(); i++) {
-			if (menu.get(i).getName().equalsIgnoreCase(name) && menu.get(i) != null) {
-				menu.remove(i);
+	public static void deleteMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
+		for (int i = 0; i < menuItem.size(); i++) {
+			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
+				menuItem.remove(i);
 				System.out.println("Menu Item removed!");
 			}
 		}

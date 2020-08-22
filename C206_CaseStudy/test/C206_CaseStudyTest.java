@@ -135,7 +135,11 @@ public class C206_CaseStudyTest {
 		
 		assertNotNull("Test if there is valid arraylist to delete from", menuListTest);
 		
+		menuListTest.add(menuItem1);
 		
+		C206_CaseStudy.name = "Crab";
+		C206_CaseStudy.deleteMenuItem(menuListTest);
+		assertEquals("Test that MenuItemTest arraylist is 0", 0, menuListTest.get(0).toString());
 	}
 	
 	@Test
