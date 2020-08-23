@@ -38,7 +38,6 @@ public class C206_CaseStudy {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		menuItem = new ArrayList<MenuItem>();
 		orderList = new ArrayList<Order>();
@@ -94,11 +93,12 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_ORDER) { // Lawrence
 				//Do code for Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "any other no. to cancel"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "4. Update Order Status", "any other no. to cancel"));
 				int orderOption = Helper.readInt("Option > ");
 				int addOd = 1;
 				int remOd = 2;
 				int viewOd = 3;
+				int chngeStatus = 4;
 				if(orderOption == addOd) {
 					userName = Helper.readString("Username > ");
 					status = "recieved";
@@ -116,20 +116,30 @@ public class C206_CaseStudy {
 					}
 					System.out.println(out);
 					int chce = 0;
+					double prce = 0.00;
 					while(chce != 999) {
+						System.out.println(String.format("Total Price: $%.2f", prce));
 						chce = Helper.readInt("Enter Order Choice >(999 to submit) ");
 						if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
 							orderInput1.add(menuItem.get(chce-1));
+							prce += menuItem.get(chce-1).getPrice();
 						}
 					}
 					addOrder(orderList, new Order(userName, status, takeAway, orderInput1));
 
 				} else if(orderOption == remOd) {
-					userName = Helper.readString("Enter username to delete orders from > ");
-					deleteOrder(orderList);
+					viewAllOrder(orderList);
+					int remOrder = Helper.readInt("Enter order No. to delete orders from > ");
+					deleteOrder(orderList, remOrder);
 				} else if(orderOption == viewOd) {
 					viewAllOrder(orderList);
-				} else {
+				} else if(orderOption == chngeStatus) {
+					viewAllOrder(orderList);
+					int chngeInput1 = Helper.readInt("Enter Order no. to change > ");
+					String chngeInput2 = Helper.readString("Enter new Order status > ");
+					boolean chngeInput3 = Helper.readBoolean("Enter Takeaway status (y/n)> ");
+					changeOrderStatus(orderList, chngeInput1, chngeInput2, chngeInput3);
+				}else {
 					System.out.println("Invalid Choice!");
 				}
 				
@@ -206,24 +216,29 @@ public class C206_CaseStudy {
 		order.add(orderIt);
 	}
 	
-	public static void deleteOrder(ArrayList<Order> order) { // Lawrence
-		for(int i = 0; i < order.size(); i++) {
-			if(order.get(i).getUsername().equalsIgnoreCase(userName) && order.get(i) != null) {
-				order.remove(i);
-				System.out.println("Order removed!");
-			}
-		}
+	public static void deleteOrder(ArrayList<Order> order, int a) { // Lawrence
+		order.remove(a - 1);
 	}
 	
 	public static void viewAllOrder(ArrayList<Order> order) { // Lawrence
 		String output = "";
-		output += String.format("%-20s%-15s%-10s%-25s%-15s%-10s\n", "Username", "Status", "Takeaway", "Items", "Category", "Price");
-		output += String.format("%-20s%-15s%-10s%-25s%-15s%-10s\n", "========", "======", "========", "=====", "========", "=====");
+		output += String.format("%-5s%-20s%-15s%-10s%-25s%-15s%-10s\n", "no.", "Username", "Status", "Takeaway", "Category", "Items", "Price");
+		output += String.format("%-5s%-20s%-15s%-10s%-25s%-15s%-10s\n", "===", "========", "======", "========", "========", "=====", "=====");
 		System.out.println(output);
 		for(int i = 0; i < order.size(); i++) {
 			if(order.get(i) != null) {
-				System.out.println(order.get(i).toString());
+				System.out.println(String.format("%-5d\n%-105s", i+1, order.get(i).toString()));
 			}
+		}
+	}
+	
+	public static void changeOrderStatus(ArrayList<Order> orderList, int orderNo, String status, boolean takeaway) {
+		if(orderList.get(orderNo - 1) != null) {
+			orderList.get(orderNo - 1).setStatus(status);
+			orderList.get(orderNo - 1).setTakeaway(takeaway);
+			System.out.println("Update Succesfull!");
+		} else {
+			System.out.println("Invalid Order No.!");
 		}
 	}
 	

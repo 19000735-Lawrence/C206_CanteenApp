@@ -80,7 +80,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that arraylist size is 1", 1, orderListTest.size());
 		
 		C206_CaseStudy.userName = "Bob";
-		C206_CaseStudy.deleteOrder(orderListTest);
+		C206_CaseStudy.deleteOrder(orderListTest, 1);
 		assertEquals("Test that arraylist size is 0", 0, orderListTest.size());
 	}
 	
@@ -96,6 +96,34 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test that there are things to output to method", orderListTest.get(0).toString());
 		
 	}
+	
+	@Test
+	public void totalOrderCostTest() {
+		
+		double total = 0;
+		menuListTest.add(menuItem1);
+		menuListTest.add(menuItem1);
+		for (int i = 0; i < menuListTest.size(); i++) {
+			total += menuListTest.get(i).getPrice();
+		}
+		
+		assertEquals("Check that can get correct total price from menuItem arraylist", 2 * (menuItem1.getPrice()), total, 0);
+	}
+	
+	@Test
+	public void changeOrderStatusTest() {
+		menuListTest.add(menuItem1);
+		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
+		
+
+		C206_CaseStudy.addOrder(orderListTest, orderItem1);
+		
+		C206_CaseStudy.changeOrderStatus(orderListTest, 1, "preparing", false);
+		
+		assertEquals("Check that order status is updated correctly",orderListTest.get(0).getStatus(), "preparing");
+		assertEquals("Check that takeaway status is updated correctly",orderListTest.get(0).isTakeaway(), false);
+	}
+	
 	
 	@Test
 	public void viewMenuTest() { // Keagan
