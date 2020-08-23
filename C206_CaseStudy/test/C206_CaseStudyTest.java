@@ -98,7 +98,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void totalOrderCostTest() {
+	public void totalOrderCostTest() { // Lawrence
 		
 		double total = 0;
 		menuListTest.add(menuItem1);
@@ -111,7 +111,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void changeOrderStatusTest() {
+	public void changeOrderStatusTest() { // Lawrence
 		menuListTest.add(menuItem1);
 		orderItem1 = new Order("Bob", "Testing", false, menuListTest);
 		
@@ -134,11 +134,8 @@ public class C206_CaseStudyTest {
 		String output = "";
 		assertEquals("Test that the retrieved menuListTest is empty?", output, allMenu);
 		
-//		menuListTest.add(menuItem1);
-//		menuListTest.add(menuItem2);
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem1);
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
-//		assertNotNull("Test that there are items to output from", menuListTest.get(0).toString());
 		assertEquals("Test that the menuItemTest arraylist is 2", 2, menuListTest.size());
 	}
 	
@@ -147,8 +144,6 @@ public class C206_CaseStudyTest {
 		
 		assertNotNull("Test if there is valid arraylist to add to", menuListTest);
 		
-//		menuListTest.add(menuItem1);
-//		menuListTest.add(menuItem2);
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem1);
 		assertEquals("Test that arraylist is 1", 1, menuListTest.size());
 		assertSame("Check that menuItem1 is added", menuItem1, menuListTest.get(0));
@@ -169,6 +164,19 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.deleteMenuItem(menuListTest);
 		assertEquals("Test that MenuItemTest arraylist is 0", 0, menuListTest.get(0).toString());
 	}
+	
+	@Test
+	public void updateMenuTest() { // Keagan
+		
+		assertNotNull("Test if there is valid arrylist to update from", menuListTest);
+		
+		menuListTest.add(menuItem1);
+		
+		
+		
+		
+	}
+	
 	
 	@Test
 	public void viewPurchaseTest() { // Jun Kai

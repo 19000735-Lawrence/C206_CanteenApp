@@ -71,6 +71,7 @@ public class C206_CaseStudy {
 				int viewMenu = 1;
 				int addMenu = 2;
 				int delMenu = 3;
+				int updateMenu = 4;
 				if (menuOption == viewMenu) {
 					viewAllMenuItems(menuItem);
 					
@@ -81,6 +82,10 @@ public class C206_CaseStudy {
 				} else if (menuOption == delMenu) {
 					name = Helper.readString("Enter menu item name to delete from list > ");
 					deleteMenuItem(menuItem);
+				
+				} else if (menuOption == updateMenu) {
+					
+					
 					
 				} else {
 					System.out.println("Invalid choice");
@@ -232,7 +237,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static void changeOrderStatus(ArrayList<Order> orderList, int orderNo, String status, boolean takeaway) {
+	public static void changeOrderStatus(ArrayList<Order> orderList, int orderNo, String status, boolean takeaway) { // Lawrence
 		if(orderList.get(orderNo - 1) != null) {
 			orderList.get(orderNo - 1).setStatus(status);
 			orderList.get(orderNo - 1).setTakeaway(takeaway);
@@ -279,6 +284,15 @@ public class C206_CaseStudy {
 			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
 				menuItem.remove(i);
 				System.out.println("Menu Item removed!");
+			}
+		}
+	}
+	
+	public static void updateMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
+		for (int i = 0; i < menuItem.size(); i++) {
+			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
+				
+				System.out.println("Menu Item updated!");
 			}
 		}
 	}
