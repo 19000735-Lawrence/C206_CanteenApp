@@ -66,7 +66,7 @@ public class C206_CaseStudy {
 			if(option == OPTION_MENUITEM) { // Keagan
 				//Do code for Menu Item here
 				C206_CaseStudy.setHeader("OPTIONS");
-				System.out.println(String.format("%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item", "4. Update Menu Item"));
 				int menuOption = Helper.readInt("Option > ");
 				int viewMenu = 1;
 				int addMenu = 2;
@@ -84,8 +84,8 @@ public class C206_CaseStudy {
 					deleteMenuItem(menuItem);
 				
 				} else if (menuOption == updateMenu) {
-					
-					
+					name = Helper.readString("Enter menu name > ");
+					updateMenuItem(menuItem);
 					
 				} else {
 					System.out.println("Invalid choice");
@@ -287,9 +287,20 @@ public class C206_CaseStudy {
 	}
 	
 	public static void updateMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
+//		for (int i = 0; i < menuItem.size(); i++) {
+//			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
+//				String output = Helper.readString("Enter new menu name > ");
+//				menuItem.get(i).setName(output);
+//				System.out.println("Menu Item updated!");
+//			} 
+//		}
+		
+		String newMenuName = Helper.readString("Enter new menu name > ");
+		
 		for (int i = 0; i < menuItem.size(); i++) {
-			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
-				
+			if (name == menuItem.get(i).getName()) {
+				menuItem.get(i).setName(newMenuName);
+//				menuItem.get(i).setPrice(newPrice);
 				System.out.println("Menu Item updated!");
 			}
 		}
