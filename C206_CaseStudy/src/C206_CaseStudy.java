@@ -65,7 +65,7 @@ public class C206_CaseStudy {
 			
 			if(option == OPTION_MENUITEM) { // Keagan
 				//Do code for Menu Item here
-				C206_CaseStudy.setHeader("ADD");
+				C206_CaseStudy.setHeader("OPTIONS");
 				System.out.println(String.format("%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item"));
 				int menuOption = Helper.readInt("Option > ");
 				int viewMenu = 1;
@@ -250,19 +250,17 @@ public class C206_CaseStudy {
 	public static String retrieveMenuItems(ArrayList<MenuItem> menuItem) { // Keagan
 		String output = "";
 		for (int i = 0; i < menuItem.size(); i++) {
-			output = String.format("%-10s %-30s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), 
+			output += String.format("%-25s %-15s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), 
 					menuItem.get(i).getPrice()); 
 		}
 		return output;
 	}
 	
 	public static void viewAllMenuItems(ArrayList<MenuItem> menu) { // Keagan
-		for (int i = 0; i < menuItem.size(); i++) {
 			C206_CaseStudy.setHeader("MENU ITEM LIST");
-			String output = String.format("%-10s %-30s %-10s\n", "NAME", "CATEGORY", "PRICE");
+			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
 			output += retrieveMenuItems(menuItem);
 			System.out.println(output);
-		}
 	}
 	
 	public static MenuItem addMenu() { // Keagan
