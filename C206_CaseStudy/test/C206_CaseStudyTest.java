@@ -159,10 +159,11 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is valid arraylist to delete from", menuListTest);
 		
 		menuListTest.add(menuItem1);
+		menuListTest.add(menuItem2);
 		
 		C206_CaseStudy.name = "Crab";
 		C206_CaseStudy.deleteMenuItem(menuListTest);
-		assertEquals("Test that MenuItemTest arraylist is 0", 0, menuListTest.get(0).toString());
+		assertEquals("Test that menuListTest arraylist is 1", 1, menuListTest.size());
 	}
 	
 	@Test
@@ -170,9 +171,10 @@ public class C206_CaseStudyTest {
 		
 		assertNotNull("Test if there is valid arrylist to update from", menuListTest);
 		
-		menuListTest.add(menuItem1);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
 		
-		
+		boolean pass = C206_CaseStudy.doUpdateMenuItem(menuListTest, "Crab", 5.99);
+		assertTrue("Test if the existing menu item is updated", pass);
 		
 		
 	}

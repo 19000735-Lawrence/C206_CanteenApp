@@ -23,7 +23,7 @@ public class C206_CaseStudy {
 	public static ArrayList<MenuItem> orderInput;
 	public static ArrayList<PurchaseOrder> purchaseList;
 	public static Order orderItem;
-	public static MenuItem menuItems;
+//	public static MenuItem menuItems;
 	public static PurchaseOrder purchaseOrders;
 	
 	public static String userName;
@@ -46,7 +46,7 @@ public class C206_CaseStudy {
 		
 		
 		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
-		menuItem.add(new MenuItem("Crab", "Sea Food", 5.99));
+		menuItem.add(new MenuItem("Crab", "Seafood", 5.99));
 		
 		int option = 0;
 		
@@ -255,7 +255,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	public static void viewAllMenuItems(ArrayList<MenuItem> menu) { // Keagan
+	public static void viewAllMenuItems(ArrayList<MenuItem> menuItem) { // Keagan
 			C206_CaseStudy.setHeader("MENU ITEM LIST");
 			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
 			output += retrieveMenuItems(menuItem);
@@ -283,6 +283,22 @@ public class C206_CaseStudy {
 				System.out.println("Menu Item removed!");
 			}
 		}
+	}
+	
+	public static boolean doUpdateMenuItem(ArrayList<MenuItem> menuItem, String menuName, double menuPrice) {
+		boolean ok = false;
+		
+		for (int i = 0; i < menuItem.size(); i++) {
+			name = menuItem.get(i).getName();
+			
+			if (menuName.equalsIgnoreCase(name)) {
+				menuItem.get(i).setName(menuName);
+				menuItem.get(i).setPrice(menuPrice);
+				
+				ok = true;
+			}
+		}
+		return ok;
 	}
 	
 	public static void updateMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
