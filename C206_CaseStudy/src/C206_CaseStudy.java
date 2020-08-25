@@ -84,7 +84,6 @@ public class C206_CaseStudy {
 					deleteMenuItem(menuItem);
 				
 				} else if (menuOption == updateMenu) {
-					name = Helper.readString("Enter menu name > ");
 					updateMenuItem(menuItem);
 					
 				} else {
@@ -287,20 +286,14 @@ public class C206_CaseStudy {
 	}
 	
 	public static void updateMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
-//		for (int i = 0; i < menuItem.size(); i++) {
-//			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
-//				String output = Helper.readString("Enter new menu name > ");
-//				menuItem.get(i).setName(output);
-//				System.out.println("Menu Item updated!");
-//			} 
-//		}
-		
-		String newMenuName = Helper.readString("Enter new menu name > ");
-		
+		name = Helper.readString("Enter menu name > ");
+		category = Helper.readString("Enter category > ");
 		for (int i = 0; i < menuItem.size(); i++) {
-			if (name == menuItem.get(i).getName()) {
-				menuItem.get(i).setName(newMenuName);
-//				menuItem.get(i).setPrice(newPrice);
+			if (name.equalsIgnoreCase(menuItem.get(i).getName()) && category.equalsIgnoreCase(menuItem.get(i).getCategory()) && menuItem != null) {
+				String newName = Helper.readString("Enter new menu name > ");
+				double newPrice = Helper.readDouble("Enter new price > ");
+				menuItem.get(i).setName(newName);
+				menuItem.get(i).setPrice(newPrice);
 				System.out.println("Menu Item updated!");
 			}
 		}
