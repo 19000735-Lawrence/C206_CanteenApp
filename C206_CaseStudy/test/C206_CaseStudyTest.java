@@ -15,6 +15,8 @@ public class C206_CaseStudyTest {
 	
 	private static MenuItem menuItem1;
 	private static MenuItem menuItem2;
+	private static MenuItem menuItem3;
+	private static MenuItem menuItem4;
 	
 	private static Order orderItem1;
 	private static Order orderItem2;
@@ -29,8 +31,10 @@ public class C206_CaseStudyTest {
 		menuListTest = new ArrayList<MenuItem>();
 		purchaseListTest = new ArrayList<PurchaseOrder>();
 		
-		menuItem1 = new MenuItem("Cheese Burger", "Fast Food", 3.99);
-		menuItem2 = new MenuItem("Crab", "Sea Food", 5.99);
+		menuItem1 = new MenuItem("Chicken Burger", "Fast Food", 2.99);
+		menuItem2 = new MenuItem("Cheese Burger", "Fast Food", 3.99);
+		menuItem3 = new MenuItem("Crab", "Sea Food", 5.99);
+		menuItem4 = new MenuItem("Salmon", "Seafood", 6.99);
 		purchaseOrders = new PurchaseOrder("");
 		
 //		orderItem1 = new Order("Bob", "Testing", false, menuListTest);  //for ref
@@ -39,9 +43,6 @@ public class C206_CaseStudyTest {
 
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
 	
 	// Test Codes here \/ \/ \/
 	
@@ -175,7 +176,12 @@ public class C206_CaseStudyTest {
 		
 		boolean pass = C206_CaseStudy.doUpdateMenuItem(menuListTest, "Crab", 5.99);
 		assertTrue("Test if the existing menu item is updated", pass);
+	}
+	
+	@Test
+	public void viewMenuByCategoryTest() {
 		
+		assertNotNull("Test if there is valid arraylist to retrieve item from", menuListTest);
 		
 	}
 	
@@ -191,6 +197,10 @@ public class C206_CaseStudyTest {
 
 		C206_CaseStudy.addPurchaseOrder(purchaseListTest, purchaseOrders);
 		assertEquals("Test that the purchaseListTest arraylist is 1", 1, purchaseListTest.size());
+	}
+	
+	@After
+	public void tearDown() throws Exception {
 	}
 	
 }
