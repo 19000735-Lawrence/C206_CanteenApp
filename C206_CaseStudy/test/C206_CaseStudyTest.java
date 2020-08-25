@@ -183,6 +183,10 @@ public class C206_CaseStudyTest {
 		
 		assertNotNull("Test if there is valid arraylist to retrieve item from", menuListTest);
 		
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem1);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem3);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem4);
 	}
 	
 	

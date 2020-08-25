@@ -319,7 +319,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static String getMenuItems1(ArrayList<MenuItem> menuItem) {
+	public static String getMenuItems1(ArrayList<MenuItem> menuItem) { // Keagan
 		String output = "";
 		for (int i = 0; i < menuItem.size(); i++) {
 			output += String.format("%-25s %-15s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), menuItem.get(i).getPrice());
@@ -327,7 +327,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-	public static String getMenuItems2(ArrayList<MenuItem> menuItem) {
+	public static String getMenuItems2(ArrayList<MenuItem> menuItem) { // Keagan
 		String output = "";
 		for (int i = 0; i < menuItem.size(); i++) {
 			output += String.format("%-25s %-15s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), menuItem.get(i).getPrice());
@@ -336,15 +336,16 @@ public class C206_CaseStudy {
 	}
 	
 	public static void viewMenuItemByCategory(ArrayList<MenuItem> menuItem) { // Keagan
-		C206_CaseStudy.setHeader("MENU ITEM LIST BY CATEGORY");
 		category = Helper.readString("Enter category > ");
 		
 		if (category.equalsIgnoreCase("Fast Food")) {
+			C206_CaseStudy.setHeader("MENU ITEM LIST BY CATEGORY");
 			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
 			output += getMenuItems1(menuItem);
 			System.out.println(output);
 			
 		} else if (category.equalsIgnoreCase("Seafood")) {
+			C206_CaseStudy.setHeader("MENU ITEM LIST BY CATEGORY");
 			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
 			output += getMenuItems2(menuItem);
 			System.out.println(output);
