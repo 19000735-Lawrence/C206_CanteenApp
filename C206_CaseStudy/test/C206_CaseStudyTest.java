@@ -179,7 +179,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void viewMenuByCategoryTest() {
+	public void viewMenuByPriceRangeTest() {
 		
 		assertNotNull("Test if there is valid arraylist to retrieve item from", menuListTest);
 		
