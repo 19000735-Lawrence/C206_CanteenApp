@@ -198,3 +198,13 @@ public class C206_CaseStudy {
 	}
 	
 }
+
+public static void addAccount(ArrayList<MenuItem>account) {
+	String userRole=Helper.readString("Enter userrole: ");
+	String contactNumber=Helper.readString("Enter contact number: ");
+	String studentID=Helper.readString("Enter studentid: ");
+	String username=Helper.readString("Enter username:");
+	Account Account=new Account(userRole, contactNumber, studentID, username);
+}
+
+
