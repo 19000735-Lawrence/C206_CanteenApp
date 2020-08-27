@@ -6,8 +6,12 @@ public class PurchaseOrder {
 	private String ingredientname;
 	private int date;
 
-	public PurchaseOrder(String ingredientname) {
+	
+
+	public PurchaseOrder(String ingredientname, int date) {
+		super();
 		this.ingredientname = ingredientname;
+		this.date = date;
 	}
 
 	public String getIngredientname() {

@@ -368,25 +368,22 @@ public class C206_CaseStudy {
 	}
 	
 	public static PurchaseOrder addPurchase() { // Jun Kai
-		char polist= 'n';
-		int date = 0;
-	 
-		date = Helper.readInt("Enter date of delivery purchase: ");
-		while(polist == 'n') {
+		date = Helper.readInt("Date of purchase order: ");
+		PurchaseOrder dt= new PurchaseOrder(date);
+
 		
 		ingredientname = Helper.readString("Enter ingredient to purchase: ");
 		PurchaseOrder pl= new PurchaseOrder(ingredientname);
+		return dt;
 		return pl;
-		
-		}
-       System.out.println("Date of updating purchase orders: " + date);
-	return purchaseOrders;
+
 	}
 	
-	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl, dt) { // Jun Kai
 		purchaseList.add(pl);
+		purchaseList.add(dt);
 
-		System.out.println("Purchase added!");
+		System.out.println("Purchase and date added!");
 		
 		
 	}
