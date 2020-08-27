@@ -155,7 +155,7 @@ public class C206_CaseStudy {
 				}
 				
 				
-			} else if(option == OPTION_PURCHASEORDER) {
+			} else if(option == OPTION_PURCHASEORDER) { // Jun Kai
 				//Do code for Purchase Order here
 				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
 				int purchaseOption = Helper.readInt("Option > ");
@@ -332,7 +332,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static boolean showMenuItemByPriceRange(ArrayList<MenuItem> menuItem, double minPrice, double maxPrice) {
+	public static boolean showMenuItemByPriceRange(ArrayList<MenuItem> menuItem, double minPrice, double maxPrice) { // Keagan
 		boolean viewPR = false;
 		
 		String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
@@ -456,8 +456,8 @@ public class C206_CaseStudy {
 				String newitem = Helper.readString("Enter new item to purchase order > ");
 				purchaseList.get(i).setIngredientname(newitem);
 				System.out.println("Purchase order updated!");
-			} 
-		}
+				} 
+			}
 		}
 		else {
 				for (int i = 0; i < purchase.size(); i++) {
@@ -469,7 +469,7 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) {
+	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		ingredientname = Helper.readString("Enter item/ingredient to find purchase Orders: ");
 		
 		C206_CaseStudy.setHeader("Purchase list with the item selected");
