@@ -4,6 +4,7 @@
 public class PurchaseOrder {
 	
 	private String ingredientname;
+	private int date;
 
 	public PurchaseOrder(String ingredientname) {
 		this.ingredientname = ingredientname;
@@ -22,5 +23,15 @@ public class PurchaseOrder {
 		output += String.format("%-20s%",this.ingredientname);
 		return output;
 	}
+
+	public int getDate() {
+		return date;
+	}
+
+	public void setDate(int date) {
+		this.date = date;
+	}
+	
+	
 
 }

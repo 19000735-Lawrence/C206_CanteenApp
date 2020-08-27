@@ -189,6 +189,29 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem4);
 	}
 	
+	@Test
+	public void addPurchaseTest() { // Jun Kai
+		
+		assertNotNull("Test if there is valid arraylist to add to", purchaseListTest);
+		
+		C206_CaseStudy.addPurchaseOrder(purchaseListTest, purchaseOrders);
+		assertEquals("Test that arraylist is 1", 1, purchaseListTest.size());
+		assertSame("Check that purchaseOrder is added", purchaseOrders, purchaseListTest.get(0));
+		
+	}
+	
+	@Test
+	public void deletePurchaseTest() { // Jun Kai
+		
+		assertNotNull("Test if there is valid arraylist to delete from", purchaseListTest);
+		
+		purchaseListTest.add(purchaseOrders);
+		
+		C206_CaseStudy.ingredientname = "";
+		C206_CaseStudy.deletePurchaseOrder(purchaseListTest);
+		assertEquals("Test that purchaseListTest arraylist is 1", 1, purchaseListTest.size());
+	}
+	
 	
 	@Test
 	public void viewPurchaseTest() { // Jun Kai
