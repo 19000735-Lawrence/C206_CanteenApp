@@ -553,7 +553,7 @@ public class C206_CaseStudy {
 		Helper.line(111, "-");
 		System.out.println(output);
 		for (int i = 0; i < account.size(); i++) {
-			output += String.format("%-15s %-15d %-15d %-15s\n", account.get(i).getuserRole(),
+			output += String.format("%-15s %-15s %-15s %-15s\n", account.get(i).getuserRole(),
 					account.get(i).getcontactNumber(), account.get(i).getstudentID(), account.get(i).getusername());
 			output += String.format("%" + 111 + "s", " ").replaceAll(" ", "-");
 		}
