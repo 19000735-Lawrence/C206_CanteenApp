@@ -408,14 +408,14 @@ public class C206_CaseStudy {
 	public static String retrievePurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		String output = "";
 		for (int i = 0; i < purchase.size(); i++) {
-			output = String.format("%-5d %-10s\n", i+1, purchase.get(i).getIngredientname()); 
+			output += String.format("%-5d %-10s\n", i+1, purchase.get(i).getIngredientname()); 
 		}
 		return output;
 	}
 	
 	public static void viewAllPurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		C206_CaseStudy.setHeader("PURCHASE ORDER LIST");
-		String output = String.format("%-5s %-10s\n", "No." ,"Ingredient Name\n");
+		String output = String.format("%-5s %-10s\n", "No." ,"Ingredient Name");
 		output += retrievePurchaseOrders(purchase);
 		System.out.println(output);
 	}
