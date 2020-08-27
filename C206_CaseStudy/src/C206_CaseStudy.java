@@ -240,7 +240,6 @@ public class C206_CaseStudy {
 		}
 
 	}
-
 	public static void updateAccount(ArrayList<Account> account) {
 		String updaccount = Helper.readString("Enter which account to update: ");
 			for (int i =0;i < account.size();i++) {
