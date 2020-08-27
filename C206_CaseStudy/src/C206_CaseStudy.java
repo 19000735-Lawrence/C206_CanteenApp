@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class C206_CaseStudy {
 	
@@ -26,9 +25,11 @@ public class C206_CaseStudy {
 	public static Order orderItem;
 	public static PurchaseOrder purchaseOrders;
 	
+	
 	public static String userName;
 	public static String status;
 	public static boolean takeAway;
+	public static int date;
 	
 	public static String name;
 	public static String category;
@@ -374,7 +375,6 @@ public class C206_CaseStudy {
 		int date = 0;
 	 
 		date = Helper.readInt("Enter date of delivery purchase: ");
-		
 		while(polist == 'n') {
 		
 		ingredientname = Helper.readString("Enter ingredient to purchase: ");
