@@ -11,11 +11,8 @@ public class C206_CaseStudyTest {
 	
 	private static ArrayList<Order> orderListTest;
 	private static ArrayList<MenuItem> menuListTest;
-<<<<<<< HEAD
 	private static ArrayList<Promotion> promoListTest;
-=======
 	private static ArrayList<PurchaseOrder> purchaseListTest;
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
 	
 	private static MenuItem menuItem1;
 	private static MenuItem menuItem2;
@@ -27,26 +24,20 @@ public class C206_CaseStudyTest {
 	private static Order orderItem1;
 	private static Order orderItem2;
 	
-<<<<<<< HEAD
 	private static Promotion promoItem1;
 	private static Promotion promoItem2;
-=======
+	
 	private static PurchaseOrder purchaseOrders;
 	private static ArrayList<Account> account;
 	Account account1 = new Account("customer", "12376789", "111222", "YY", "password");
 	Account account2 = new Account("Guest", "12376789", "222222", "YyY", "SB");
 
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
-
 	@Before
 	public void setUp() throws Exception {
 		orderListTest = new ArrayList<Order>();
 		menuListTest = new ArrayList<MenuItem>();
-<<<<<<< HEAD
 		promoListTest = new ArrayList<Promotion>();
-=======
 		purchaseListTest = new ArrayList<PurchaseOrder>();
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
 		
 		menuItem1 = new MenuItem("Chicken Burger", "Fast Food", 2.99);
 		menuItem2 = new MenuItem("Fish Burger", "Fast Food", 3.99);
@@ -59,13 +50,7 @@ public class C206_CaseStudyTest {
 //		orderItem1 = new Order("Bob", "Testing", false, menuListTest);  //for ref
 //		orderItem2 = new Order("Rob", "Testing", true, menuListTest);
 		
-<<<<<<< HEAD
 		promoItem1 = new Promotion("Chicken Burger", "Fast Food", 2.00);
-		
-	
-=======
-
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
 	}
 
 	
