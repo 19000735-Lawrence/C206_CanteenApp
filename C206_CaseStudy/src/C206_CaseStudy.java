@@ -29,14 +29,13 @@ public class C206_CaseStudy {
 	public static String userName;
 	public static String status;
 	public static boolean takeAway;
-	public static int date;
-	
+
 	public static String name;
 	public static String category;
 	public static double price;
 	
 	public static String ingredientname;
-	
+	public static int date;
 	
 	public static void main(String[] args) {
 		
@@ -158,12 +157,13 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PURCHASEORDER) {
 				//Do code for Purchase Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. View Purchase List by Items"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s/n", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
 				int purchaseOption = Helper.readInt("Option > ");
 				int addPo = 1;
 				int remPo = 2;
 				int viewPo = 3;
-				int viewPoByItems = 4;
+				int updatePo = 4;
+				int viewPoByItems = 5;
 				if (purchaseOption == viewPo) {
 					viewAllPurchaseOrders(purchaseList);
 
@@ -174,10 +174,14 @@ public class C206_CaseStudy {
 				}	else if(purchaseOption == remPo) {
 					PurchaseOrder pl = deletePurchase();
 					C206_CaseStudy.deletePurchaseOrder(purchaseList, pl);
-				} else if(purchaseOption == viewPoByItems) {
-					viewPurchaseOrderByItem(purchaseList);
+				} else if(purchaseOption == updatePo) {
+					updatePurchaseOrder(purchaseList);
 					
+				} else if (purchaseOption == viewPoByItems) {
+					viewPurchaseOrderByItem(purchaseList);
+
 				}
+			  
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
 				
@@ -368,34 +372,30 @@ public class C206_CaseStudy {
 	}
 	
 	public static PurchaseOrder addPurchase() { // Jun Kai
-		date = Helper.readInt("Date of purchase order: ");
-		PurchaseOrder dt= new PurchaseOrder(date);
-
-		
 		ingredientname = Helper.readString("Enter ingredient to purchase: ");
-		PurchaseOrder pl= new PurchaseOrder(ingredientname);
-		return dt;
+		date = Helper.readInt("Date of purchase order: ");
+
+		PurchaseOrder pl= new PurchaseOrder(ingredientname, date);
 		return pl;
+		
 
 	}
 	
-	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl, dt) { // Jun Kai
+	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
 		purchaseList.add(pl);
-		purchaseList.add(dt);
-
 		System.out.println("Purchase and date added!");
 		
 		
 	}
 	
-	public static PurchaseOrder deletePurchase() { // Jun Kai
-		ingredientname = Helper.readString("Enter ingredient to remove: ");
+	public static PurchaseOrder deletePurchaseOrder() { // Jun Kai
+		date = Helper.readInt("Enter date to remove: ");
 		
-        PurchaseOrder pl= new PurchaseOrder(ingredientname);
+        PurchaseOrder pl= new PurchaseOrder(ingredientname, date);
 		return pl;
 	}
 	
-	public static void deletePurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+	public static void deletePurchase(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
 		for (int i = 0; i < purchase.size(); i++) {
 			if (purchase.get(i).getIngredientname().equalsIgnoreCase(ingredientname) && purchase.get(i) != null) {
 				purchase.remove(i);
@@ -430,6 +430,44 @@ public class C206_CaseStudy {
 			}
 		}
 		return output;
+	}
+	
+	public static boolean doUpdatePurchaseOrder(ArrayList<PurchaseOrder> purchase, String ingName) { // Jun Kai
+		boolean ok = false;
+		
+		for (int i = 0; i < purchaseList.size(); i++) {
+			name = purchaseList.get(i).getIngredientname();
+			
+			if (ingName.equalsIgnoreCase(ingredientname)) {
+				purchaseList.get(i).setIngredientname(ingName);
+				
+				ok = true;
+			}
+		}
+		return ok;
+	}
+	public static void updatePurchaseList(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		char udItem = 'u';
+	
+		ingredientname = Helper.readString("Enter items to update > ");
+		udItem = Helper.readChar("Do you want to change/remove item? ");
+		if (udItem == 'u') {
+			for (int i = 0; i < purchaseList.size(); i++) {
+			if (ingredientname.equalsIgnoreCase(purchaseList.get(i).getIngredientname()) && purchaseList != null) {
+				String newitem = Helper.readString("Enter new item to purchase order > ");
+				purchaseList.get(i).setIngredientname(newitem);
+				System.out.println("Purchase order updated!");
+			} 
+		}
+		}
+		else {
+				for (int i = 0; i < purchase.size(); i++) {
+					if (purchase.get(i).getIngredientname().equalsIgnoreCase(ingredientname) && purchase.get(i) != null) {
+						purchase.remove(i);
+						System.out.println("Ingredient from Purchase order removed!");
+					} 
+			}
+		}
 	}
 	
 	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) {
