@@ -472,12 +472,12 @@ public class C206_CaseStudy {
 	public static boolean showPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase, String searchitem) { // Jun Kai
 		boolean findItem = false;
 		
-		String output = String.format("%-25s %-15s", "ingredientname");
+		String output = String.format("%-25s", "ingredientname");
 		ingredientname = ""; 
 		
-		for (int i = 0; i < menuItem.size(); i++) {
+		for (int i = 0; i < purchaseList.size(); i++) {
 			ingredientname = purchaseList.get(i).getIngredientname();
-			date = purchaseList.get(i).getDate();
+
 			
 			if (searchitem == ingredientname) {
 				output += String.format("%-25s", ingredientname);
