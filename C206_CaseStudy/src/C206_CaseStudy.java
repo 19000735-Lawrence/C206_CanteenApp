@@ -107,7 +107,49 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
+				int optionPromotion = Helper.readInt("Option > ");
+				int updPromo = 1;
+				int addPromoAndCheck = 2;
+				int bonus = 3;
 				
+				if(optionPromotion == updPromo) {
+				for(int i = 0; i < promoList.size();i++) {
+					System.out.println(promoList.get(i).getPromotionCode());
+				}
+					String promoCode = Helper.readString("Enter Promotion code you would like to update> ");
+					for(int i = 0; i < promoList.size();i++) {
+						if(promoCode == promoList.get(i).getPromotionCode()) {
+							String newEndDate = Helper.readString("Enter updated end date> ");
+							double newDiscount = Helper.readDouble("Enter updated discount amount> ");
+							
+							promoList.get(i).setEndDate(newEndDate);
+							promoList.get(i).setDiscountAmount(newDiscount);
+							
+						}
+					}
+					
+					
+				}
+				if(optionPromotion == addPromoAndCheck) {
+					String promoCode = Helper.readString("Enter promotion Code> ");
+					String endDate = Helper.readString("Enter end date> ");
+					double discAmt = Helper.readDouble("Enter discount amount> ");
+					
+					for(int i = 0; i < promoList.size(); i++) {
+						if(promoList.get(i).getPromotionCode() != promoCode) {
+							if(promoList.get(i).getEndDate() != endDate) {
+								promoItem = new Promotion(promoCode, endDate, discAmt);
+								promoList.add(promoItem);
+							}else { 
+								System.out.println("End Date needs to be unique");
+								
+							}
+						}else {
+							System.out.println("Promotion Code needs to be unique");
+						}
+					}
+					
+				}
 				
 			} else if(option == OPTION_USERTYPE) {
 				while(userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
@@ -198,5 +240,7 @@ public class C206_CaseStudy {
 	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) {
 		menu.add(menuItems);
 	}
+	
+	
 	
 }

@@ -2,43 +2,48 @@ import java.util.ArrayList;
 
 public class Promotion {
 
-	private String name;
-	private String cate;
-	private double price;
+	private String promotionCode;
+	private String endDate;
+	private double discountAmount;
 	
-	public Promotion(String name, String cate, double price) {
-		this.name = name;
-		this.cate = cate;
-		this.price = price;
+	public Promotion(String promotionCode, String endDate, double discountAmount) {
+		this.promotionCode = promotionCode;
+		this.endDate = endDate;
+		this.discountAmount = discountAmount;
 	}
 
-	public String getName() {
-		return name;
+	public String getPromotionCode() {
+		return promotionCode;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPromotionCode(String promotionCode) {
+		this.promotionCode = promotionCode;
 	}
 
-	public String getCate() {
-		return cate;
+	public String getEndDate() {
+		return endDate;
 	}
 
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
-	public double getPrice() {
-		return price;
+	public double getDiscountAmount() {
+		return discountAmount;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setDiscountAmount(double discountAmount) {
+		this.discountAmount = discountAmount;
 	}
 
+	@Override
 	public String toString() {
-		String output = String.format("%-25s%-15s%-10.2f", this.name, this.cate, this.price);
-		return output;
+		return "Promotion [promotionCode=" + promotionCode + ", endDate=" + endDate + ", discountAmount="
+				+ discountAmount + "]";
 	}
+	
+	
+	
+	
 	
 }
