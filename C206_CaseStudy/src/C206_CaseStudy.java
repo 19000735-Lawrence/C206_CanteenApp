@@ -157,7 +157,7 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PURCHASEORDER) {
 				//Do code for Purchase Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s/n", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
 				int purchaseOption = Helper.readInt("Option > ");
 				int addPo = 1;
 				int remPo = 2;
@@ -406,35 +406,18 @@ public class C206_CaseStudy {
 	}
 	
 	public static String retrievePurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
-//		String output = "";
-//		for (int i = 0; i < purchase.size(); i++) {
-//				output = String.format("%-5d\n%-15s", i+1, purchase.get(i).toString()); 
-//			}
-//		}
-//		return output;
-		
-		
 		String output = "";
 		for (int i = 0; i < purchase.size(); i++) {
-			if (purchase.get(i) != null) {
-				output = String.format("%-5d %-15s\n", i+1, purchase.get(i).getIngredientname()); 
-			}
+			output = String.format("%-5d %-10s\n", i+1, purchase.get(i).getIngredientname()); 
 		}
 		return output;
 	}
 	
 	public static void viewAllPurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		C206_CaseStudy.setHeader("PURCHASE ORDER LIST");
-		String output = String.format("%-5s %-10s\n", "No.", "Ingredient Name");
+		String output = String.format("%-5s %-10s\n", "No." ,"Ingredient Name\n");
 		output += retrievePurchaseOrders(purchase);
 		System.out.println(output);
-		
-//		for (int i = 0; i < purchaseList.size(); i++) {
-//			C206_CaseStudy.setHeader("Purchase Order LIST");
-//			String output = String.format("%-10s", "Ingredients");
-//			output += retrievePurchaseOrders(purchaseList);
-//			System.out.println(output);
-//		}
 	}
 	
 	public static String getPurchaseList(ArrayList<PurchaseOrder> purchase) { // Jun Kai
