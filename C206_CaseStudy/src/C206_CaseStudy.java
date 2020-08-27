@@ -104,7 +104,28 @@ public class C206_CaseStudy {
 				
 				
 			} else if(option == OPTION_ACCOUNT) {
-				//Do code for Account here
+				int optionaccount = Helper.readInt("Option > ");
+				if (optionaccount == 1) {
+				    C206_CaseStudy.addAccount(accList);
+
+				}else if (optionaccount == 2) {
+					C206_CaseStudy.viewAccount(accList);
+					
+				}else if (optionaccount == 3 ) {
+					C206_CaseStudy.deleteaccount();
+					
+				}else if (optionaccount == 4 ) {
+					C206_CaseStudy.updateAccount(accList);
+				
+				}else if (optionaccount == 5 ) {
+					C206_CaseStudy.checkusernameAccount(accList);
+					
+				}else if (optionaccount == 6 ) {
+					String username=Helper.readString("Enter username :");
+					String password=Helper.readString("Enter password:");
+					C206_CaseStudy.loginAccount(accList,username,password);
+				}
+						
 				
 			} else if(option == OPTION_ORDER) { // Lawrence
 				//Do code for Order here
