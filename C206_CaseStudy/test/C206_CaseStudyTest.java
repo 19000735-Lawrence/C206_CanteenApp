@@ -24,7 +24,9 @@ public class C206_CaseStudyTest {
 	private static Order orderItem2;
 	
 	private static PurchaseOrder purchaseOrders;
-
+	private static ArrayList<Account> account;
+	Account account1 = new Account("customer", "12376789", "111222", "YY", "password");
+	Account account2 = new Account("Guest", "12376789", "222222", "YyY", "SB");
 
 
 	@Before
@@ -264,9 +266,52 @@ public class C206_CaseStudyTest {
 		pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest, "");
 		assertFalse("Test if purchase order is display correctly by the Item", pass);
 	}
-	
+	@Test
+	public void addaccount() {//YYYYYYY
+		assertNotNull("If user creates an account, and his fill in details are wrong, it should return an error ",
+				account);
+
+		account.add(account1);
+
+		C206_CaseStudy.addAccount(account);
+		assertEquals("Test that account added is 1", 1, account.size());
+	}
+	public void deleteaccount() {//yy
+
+		assertNotNull("Test if thr list is not empty so that Account can be deleted", account);
+		C206_CaseStudy.addAccount(account);
+		String test = C206_CaseStudy.dodeleteMember(account, "123");
+		assertTrue("Test if Account in the list can be deleted" + test, true);
+	}
+	@Test
+	public void viewaccount() {//yy
+		account.add(account1);
+		account.add(account2);
+		C206_CaseStudy.viewAccount(account);
+		assertNotNull("If the user clicks on his profile or settings, he can view his account and make changes. ",
+				account.size());
+
+	}@Test
+	public void updateaccount() {//yy
+
+		String test1 = C206_CaseStudy.updateAccount(account);
+		assertTrue("If the user clicks on update, he can make updates to his accounts "+test1,true );
+	}
+	@Test
+	public void checkusernameaccount() {//yy
+
+		String test1 = C206_CaseStudy.checkusernameAccount(account);
+		assertEquals("If the user fills in his username, the username will be acceptable if not in use ", test1);
+	}
+	@Test
+	public void loginaccount() {//yy
+		account.add(account1);
+		account.add(account2);
+		String test1 = C206_CaseStudy.loginAccount(account, "yueying", "shabi");
+		assertNotNull("If user fill in login details, he will be able to login to his account ", test1);
+	}
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() throws Exception {//yy
 	}
 	
 }

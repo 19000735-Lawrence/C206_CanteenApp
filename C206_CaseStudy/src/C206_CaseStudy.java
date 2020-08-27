@@ -22,6 +22,7 @@ public class C206_CaseStudy {
 	public static ArrayList<Order> orderList;
 	public static ArrayList<MenuItem> orderInput;
 	public static ArrayList<PurchaseOrder> purchaseList;
+	private static ArrayList<Account> accList;
 	public static Order orderItem;
 	public static PurchaseOrder purchaseOrders;
 	
@@ -43,7 +44,10 @@ public class C206_CaseStudy {
 		orderList = new ArrayList<Order>();
 		orderInput = new ArrayList<MenuItem>();
 		purchaseList = new ArrayList<PurchaseOrder>();
+		accList=new ArrayList<Account>();
 		
+		accList.add(new Account("customer","123123123","12390234","yueying","woshishabi"));
+		accList.add(new Account("puppy","32132132","32112323","yueying","woshiwangwang"));
 		menuItem.add(new MenuItem("Chicken Burger", "Fast Food", 2.50));
 		menuItem.add(new MenuItem("Fish Burger", "Fast Food", 3.50));
 		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 4.50));
@@ -504,5 +508,128 @@ public class C206_CaseStudy {
 //		output += getPurchaseList(purchaseList);
 //		System.out.println(output);
 	}
-
+	public static void addAccount(ArrayList<Account>account) {
+		String userRole=Helper.readString("Enter userrole: ");
+		String contactNumber=Helper.readString("Enter contact number: ");	
+		String studentID=Helper.readString("Enter studentid: ");
+		String username=Helper.readString("Enter username:");
+		String password=Helper.readString("Enter password:");
+		C206_CaseStudy.checkusernameAccount(account);
+		C206_CaseStudy.loginAccount(account, username, password);
+		Account Account=new Account(userRole, contactNumber, studentID, username,password);
+		account.add(Account);
+		System.out.println("Account added!");
+	}
+	public static void viewAccount(ArrayList<Account>account) {
+		Helper.line(111, "-");
+	        System.out.println("Account Menu");
+	        String output = String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", "UserRole", "Contact Number","Student ID", "Username");
+	        Helper.line(111, "-");
+	        System.out.println(output);
+	        for(int i = 0; i < account.size(); i++) {
+	        	output+= String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n",
+	        					account.get(i).getuserRole(),
+	        					account.get(i).getcontactNumber(),
+	        					account.get(i).getstudentID(),
+	        					account.get(i).getusername());
+	        					output += String.format("%" + 111 + "s", " ").replaceAll(" ", "-");
+	        }System.out.println(output);
+}
+//public static boolean deleteAccount(ArrayList<Account> account) {
+//	String delaccount = Helper.readString("Enter which account to remove: ");
+//	boolean deleteaccount=true;
+//	for (Account m : account) {
+//		if (m.getusername().equalsIgnoreCase(delaccount)) {
+//			account.remove(m);
+//			System.out.println("Account have been successfully deleted!");
+//			deleteaccount = true;
+//			break;
+//		} else {
+//			System.out.println("Account does not exist!");
+//			deleteaccount = false;
+//		}
+//	}return deleteaccount;
+//}
+	public static void deleteaccount() {
+		  C206_CaseStudy.setHeader("DELETE account");
+		  String account = Helper.readString("Enter the account to delete> ");
+		  int i = 0;
+		  
+		  boolean valid = false;
+		  for (i=0; i < accList.size(); i++) {
+		   if (accList.get(i).getstudentID().contentEquals(account)){
+		    valid = true;
+		    break;
+		   }
+		  }
+		  if (valid) {
+		    System.out.println(dodeleteMember(accList,"yueying")); 
+		   
+		  } else {
+		   System.out.println("Invalid email");
+		   System.out.println();
+		    
+		  }
+		 }public static String dodeleteMember(ArrayList<Account> accList,String acc1) {
+			  
+			  String output ="";
+			  boolean isValid = false;
+			  
+			  if (accList.isEmpty()) {
+			   output += "Empty Account List";
+			   return output;
+			  }
+			  
+			  for (Account a : accList) {
+			   if (a.getusername().contentEquals(acc1)) {
+			    isValid = true;
+			   }
+			  }
+			  
+			  if (!isValid) {
+			   output += "Account deleted";
+			   accList.remove(acc1);
+			  }else {
+			   output += "Account "+acc1+" cannot be deleted";
+			  }
+			  return output;
+			 }
+		
+	
+	
+	
+	
+	public static String updateAccount(ArrayList<Account> account) {
+		String updaccount = Helper.readString("Enter which account to update: ");
+		String output="";
+			for (int i =0;i < account.size();i++) {
+		    	if (account.get(i).getusername().equals(updaccount)) {
+		    		String username = Helper.readString("Enter newusername > ");
+		    		String password = Helper.readString("Enter newpassword > ");
+		    		account.get(i).setusername(username);
+		    		account.get(i).setpassword(password);
+		    		output+="Your account has been updated";
+		    	}
+		    }
+			return output;
+		  }
+	public static String checkusernameAccount(ArrayList<Account> account) {
+		String username = Helper.readString("Enter unsername of your account: ");
+		String output="";
+		for (int i =0;i < account.size();i++) {
+	    	if (account.get(i).getusername().equals(username)) {
+	    		output+="This username is already taken, please use a different one";
+	    	}
+		}
+		return output;
+	}
+	public static String loginAccount(ArrayList<Account> account,String username, String password) {
+		String output="";
+		for (int i =0;i < account.size();i++) {
+			if(account.get(i). getusername().equals(username) && account.get(i). getpassword().equals(password)){
+				output+="You have successfully logged in to your account";
+			}
+		}
+		return output;
+	}
 }
