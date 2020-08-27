@@ -383,7 +383,7 @@ public class C206_CaseStudy {
 	}
 	
 	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
-		purchaseList.add(pl);
+		purchase.add(pl);
 		System.out.println("Purchase and date added!");
 		
 		
