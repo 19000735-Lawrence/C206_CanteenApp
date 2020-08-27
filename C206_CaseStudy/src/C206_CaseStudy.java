@@ -21,24 +21,35 @@ public class C206_CaseStudy {
 	
 	public static ArrayList<Order> orderList;
 	public static ArrayList<MenuItem> orderInput;
+	public static ArrayList<PurchaseOrder> purchaseList;
 	public static Order orderItem;
-	public static MenuItem menuItems;
+	public static PurchaseOrder purchaseOrders;
+	
 	
 	public static String userName;
 	public static String status;
 	public static boolean takeAway;
+
+	public static String name;
+	public static String category;
+	public static double price;
 	
+	public static String ingredientname;
+	public static int date;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		menuItem = new ArrayList<MenuItem>();
 		orderList = new ArrayList<Order>();
 		orderInput = new ArrayList<MenuItem>();
+		purchaseList = new ArrayList<PurchaseOrder>();
 		
-		
-		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
-		menuItem.add(new MenuItem("Crab", "Sea Food", 5.99));
+		menuItem.add(new MenuItem("Chicken Burger", "Fast Food", 2.50));
+		menuItem.add(new MenuItem("Fish Burger", "Fast Food", 3.50));
+		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 4.50));
+		menuItem.add(new MenuItem("Shrimp", "Seafood", 5.50));
+		menuItem.add(new MenuItem("Crab", "Seafood", 6.50));
+		menuItem.add(new MenuItem("Salmon", "Seafood", 7.50));
 		
 		int option = 0;
 		
@@ -55,24 +66,55 @@ public class C206_CaseStudy {
 			optionMenu();
 			option = Helper.readInt("Enter an option > ");
 			
-			if(option == OPTION_MENUITEM) {
+			if(option == OPTION_MENUITEM) { // Keagan
 				//Do code for Menu Item here
+				C206_CaseStudy.setHeader("OPTIONS");
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item", "4. Update Menu Item", "5. View Menu Item By Price Range"));
+				int menuOption = Helper.readInt("Option > ");
+				int viewMenu = 1;
+				int addMenu = 2;
+				int delMenu = 3;
+				int updateMenu = 4;
+				int viewMenuByPriceRange = 5;
+				if (menuOption == viewMenu) {
+					viewAllMenuItems(menuItem);
+					
+				} else if (menuOption == addMenu) {
+					MenuItem mi = addMenu();
+					C206_CaseStudy.addMenuItem(menuItem, mi);
+					
+				} else if (menuOption == delMenu) {
+					name = Helper.readString("Enter menu item name to delete from list > ");
+					deleteMenuItem(menuItem);
+				
+				} else if (menuOption == updateMenu) {
+					updateMenuItem(menuItem);
+				
+				} else if (menuOption == viewMenuByPriceRange) {
+					viewMenuItemByPriceRange(menuItem);
+					
+				} else {
+					System.out.println("Invalid choice");
+					
+				}
+				
 				
 			} else if(option == OPTION_ACCOUNT) {
 				//Do code for Account here
 				
-			} else if(option == OPTION_ORDER) {
+			} else if(option == OPTION_ORDER) { // Lawrence
 				//Do code for Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "any other no. to cancel"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "4. Update Order Status", "any other no. to cancel"));
 				int orderOption = Helper.readInt("Option > ");
 				int addOd = 1;
 				int remOd = 2;
 				int viewOd = 3;
+				int chngeStatus = 4;
 				if(orderOption == addOd) {
 					userName = Helper.readString("Username > ");
 					status = "recieved";
 					takeAway = Helper.readBoolean("Takeaway? >(Y/N) ");
-					orderInput.clear();
+					ArrayList<MenuItem> orderInput1 = new ArrayList<MenuItem>();
 					
 					String out = String.format("%-5s%-25s%-15s%-10s\n", "no.", "Name", "Category", "Price");
 					out += String.format("%-5s%-25s%-15s%-10s\n", "===", "====", "========", "=====");
@@ -84,30 +126,67 @@ public class C206_CaseStudy {
 						out = "No Items Available!";
 					}
 					System.out.println(out);
-					int chce = Helper.readInt("Enter Order Choice > ");
-					if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
-						orderInput.add(menuItem.get(chce-1));
-						orderItem = new Order(userName, status, takeAway, orderInput);
-					}		
-					addOrder(orderList);
+					int chce = 0;
+					double prce = 0.00;
+					while(chce != 999) {
+						System.out.println(String.format("Total Price: $%.2f", prce));
+						chce = Helper.readInt("Enter Order Choice >(999 to submit) ");
+						if(chce <= menuItem.size() && menuItem.get(chce-1) != null && orderInput != null) {
+							orderInput1.add(menuItem.get(chce-1));
+							prce += menuItem.get(chce-1).getPrice();
+						}
+					}
+					addOrder(orderList, new Order(userName, status, takeAway, orderInput1));
 
 				} else if(orderOption == remOd) {
-					userName = Helper.readString("Enter username to delete orders from > ");
-					deleteOrder(orderList);
+					viewAllOrder(orderList);
+					int remOrder = Helper.readInt("Enter order No. to delete orders from > ");
+					deleteOrder(orderList, remOrder);
 				} else if(orderOption == viewOd) {
 					viewAllOrder(orderList);
-				} else {
+				} else if(orderOption == chngeStatus) {
+					viewAllOrder(orderList);
+					int chngeInput1 = Helper.readInt("Enter Order no. to change > ");
+					String chngeInput2 = Helper.readString("Enter new Order status > ");
+					boolean chngeInput3 = Helper.readBoolean("Enter Takeaway status (y/n)> ");
+					changeOrderStatus(orderList, chngeInput1, chngeInput2, chngeInput3);
+				}else {
 					System.out.println("Invalid Choice!");
 				}
 				
 				
 			} else if(option == OPTION_PURCHASEORDER) {
 				//Do code for Purchase Order here
-				
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s/n", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
+				int purchaseOption = Helper.readInt("Option > ");
+				int addPo = 1;
+				int remPo = 2;
+				int viewPo = 3;
+				int updatePo = 4;
+				int viewPoByItems = 5;
+				if (purchaseOption == viewPo) {
+					viewAllPurchaseOrders(purchaseList);
+
+				} else if (purchaseOption == addPo) {
+					PurchaseOrder pl = addPurchase();
+					C206_CaseStudy.addPurchaseOrder(purchaseList, pl);
+					
+				}	else if(purchaseOption == remPo) {
+					ingredientname = Helper.readString("Enter item from purchase Orders to remove it: ");
+					deletePurchaseOrder(purchaseList);
+					
+				} else if(purchaseOption == updatePo) {
+					updatePurchaseOrder(purchaseList);
+					
+				} else if (purchaseOption == viewPoByItems) {
+					viewPurchaseOrderByItem(purchaseList);
+
+				}
+			  
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
 				
-			} else if(option == OPTION_USERTYPE) {
+			} else if(option == OPTION_USERTYPE) { // Lawrence
 				while(userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
 					userTypeMenu();
 					userOption = Helper.readInt("Enter User type > ");
@@ -154,64 +233,273 @@ public class C206_CaseStudy {
 	
 	//Create all the methods here \/ \/ \/
 	
-	public static void addOrder(ArrayList<Order> order) { // Lawrence 
-		order.add(orderItem);
+	public static void addOrder(ArrayList<Order> order, Order orderIt) { // Lawrence 
+		order.add(orderIt);
 	}
 	
-	public static void deleteOrder(ArrayList<Order> order) { // Lawrence
-		for(int i = 0; i < order.size(); i++) {
-			if(order.get(i).getUsername().equalsIgnoreCase(userName) && order.get(i) != null) {
-				order.remove(i);
-				System.out.println("Order removed!");
-			}
-		}
+	public static void deleteOrder(ArrayList<Order> order, int a) { // Lawrence
+		order.remove(a - 1);
 	}
 	
 	public static void viewAllOrder(ArrayList<Order> order) { // Lawrence
+		String output = "";
+		output += String.format("%-5s%-20s%-15s%-10s%-25s%-15s%-10s\n", "no.", "Username", "Status", "Takeaway", "Category", "Items", "Price");
+		output += String.format("%-5s%-20s%-15s%-10s%-25s%-15s%-10s\n", "===", "========", "======", "========", "========", "=====", "=====");
+		System.out.println(output);
 		for(int i = 0; i < order.size(); i++) {
 			if(order.get(i) != null) {
-				System.out.println(order.get(i).toString());
+				System.out.println(String.format("%-5d\n%-105s", i+1, order.get(i).toString()));
 			}
 		}
 	}
 	
-	public static String retrieveMenuItems(ArrayList<MenuItem> menu) { // Keagan
+	public static void changeOrderStatus(ArrayList<Order> orderList, int orderNo, String status, boolean takeaway) { // Lawrence
+		if(orderList.get(orderNo - 1) != null) {
+			orderList.get(orderNo - 1).setStatus(status);
+			orderList.get(orderNo - 1).setTakeaway(takeaway);
+			System.out.println("Update Succesfull!");
+		} else {
+			System.out.println("Invalid Order No.!");
+		}
+	}
+	
+	public static String retrieveMenuItems(ArrayList<MenuItem> menuItem) { // Keagan
 		String output = "";
-		for (int i = 0; i < menu.size(); i++) {
-			output = String.format("%-10s %-30s $-10.2f\n", menu.get(i).getName(), menu.get(i).getCategory(), 
-					menu.get(i).getPrice()); 
+		for (int i = 0; i < menuItem.size(); i++) {
+			output += String.format("%-25s %-15s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), 
+					menuItem.get(i).getPrice()); 
 		}
 		return output;
 	}
 	
-	public static void viewAllMenuItems(ArrayList<MenuItem> menu) { // Keagan
-		for (int i = 0; i < menuItem.size(); i++) {
+	public static void viewAllMenuItems(ArrayList<MenuItem> menuItem) { // Keagan
 			C206_CaseStudy.setHeader("MENU ITEM LIST");
-			String output = String.format("%-10s %-30s %-10s\n", "NAME", "CATEGORY", "PRICE");
+			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
 			output += retrieveMenuItems(menuItem);
+			System.out.println(output);
+	}
+	
+	public static MenuItem addMenu() { // Keagan
+		name = Helper.readString("Enter menu name: ");
+		category = Helper.readString("Enter category: ");
+		price = Helper.readDouble("Enter price: ");
+		
+		MenuItem mi = new MenuItem(name, category, price);
+		return mi;
+	}
+	
+	public static void addMenuItem(ArrayList<MenuItem> menuItem, MenuItem mi) { // Keagan
+		menuItem.add(mi);
+		System.out.println("Menu Item added!");
+	}
+	
+	public static void deleteMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
+		for (int i = 0; i < menuItem.size(); i++) {
+			if (menuItem.get(i).getName().equalsIgnoreCase(name) && menuItem.get(i) != null) {
+				menuItem.remove(i);
+				System.out.println("Menu Item removed!");
+			}
+		}
+	}
+	
+	public static boolean doUpdateMenuItem(ArrayList<MenuItem> menuItem, String menuName, double menuPrice) { // Keagan
+		boolean ok = false;
+		
+		for (int i = 0; i < menuItem.size(); i++) {
+			name = menuItem.get(i).getName();
+			
+			if (menuName.equalsIgnoreCase(name)) {
+				menuItem.get(i).setName(menuName);
+				menuItem.get(i).setPrice(menuPrice);
+				
+				ok = true;
+			}
+		}
+		return ok;
+	}
+	
+	public static void updateMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
+		name = Helper.readString("Enter menu name > ");
+		category = Helper.readString("Enter category > ");
+		for (int i = 0; i < menuItem.size(); i++) {
+			if (name.equalsIgnoreCase(menuItem.get(i).getName()) && category.equalsIgnoreCase(menuItem.get(i).getCategory()) && menuItem != null) {
+				String newName = Helper.readString("Enter new menu name > ");
+				double newPrice = Helper.readDouble("Enter new price > ");
+				menuItem.get(i).setName(newName);
+				menuItem.get(i).setPrice(newPrice);
+				System.out.println("Menu Item updated!");
+			}
+		}
+	}
+	
+	public static boolean showMenuItemByPriceRange(ArrayList<MenuItem> menuItem, double minPrice, double maxPrice) {
+		boolean viewPR = false;
+		
+		String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
+		name = "";
+		category = "";
+		
+		for (int i = 0; i < menuItem.size(); i++) {
+			name = menuItem.get(i).getName();
+			category = menuItem.get(i).getCategory();
+			price = menuItem.get(i).getPrice();
+			
+			if (minPrice < price && maxPrice > price) {
+				output += String.format("%-25s %-15s %-10.2f\n", name, category, price);
+				
+				viewPR = true;
+			}
+		}
+		System.out.println(output);
+		return viewPR;
+	}
+	
+	public static void viewMenuItemByPriceRange(ArrayList<MenuItem> menuItem) { // Keagan
+		C206_CaseStudy.viewAllMenuItems(menuItem);
+		C206_CaseStudy.setHeader("MENU ITEM LIST BY PRICE RANGE");
+		
+		if (!menuItem.isEmpty()) {
+			double minPrice = Helper.readDouble("Enter minimum price > ");
+			double maxPrice = Helper.readDouble("Enter maximum price > ");
+			
+			boolean viewPR = showMenuItemByPriceRange(menuItem, minPrice, maxPrice);
+			if (viewPR == false) {
+				System.out.println("No menu items falls under this range!");
+				
+			} else {
+				System.out.println("List of menu items falls under this range");
+			}
+		}
+	}
+	
+	public static PurchaseOrder addPurchase() { // Jun Kai
+		ingredientname = Helper.readString("Enter ingredient to purchase: ");
+		date = Helper.readInt("Date of purchase order: ");
+
+		PurchaseOrder pl= new PurchaseOrder(ingredientname, date);
+		return pl;
+		
+
+	}
+	
+	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+		purchaseList.add(pl);
+		System.out.println("Purchase and date added!");
+		
+		
+	}
+	
+	public static PurchaseOrder deletePurchaseOrder() { // Jun Kai
+		date = Helper.readInt("Enter date to remove: ");
+		
+        PurchaseOrder pl= new PurchaseOrder(ingredientname, date);
+		return pl;
+	}
+	
+	public static void deletePurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+		for (int i = 0; i < purchase.size(); i++) {
+			if (purchase.get(i).getIngredientname().equalsIgnoreCase(ingredientname) && purchase.get(i) != null) {
+				purchase.remove(i);
+				System.out.println("Ingredient from Purchase order removed!");
+			} 
+		}
+	}
+	
+	public static String retrievePurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		String output = "";
+		for (int i = 0; i < purchase.size(); i++) {
+			output = String.format("%-10s", purchase.get(i).getIngredientname()); 
+		}
+		return output;
+	}
+	
+	public static void viewAllPurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		for (int i = 0; i < purchaseList.size(); i++) {
+			C206_CaseStudy.setHeader("Purchase Order LIST");
+			String output = String.format("%-10s", "Ingredients");
+			output += retrievePurchaseOrders(purchaseList);
 			System.out.println(output);
 		}
 	}
 	
-	public static void addMenuItem(ArrayList<MenuItem> menu, MenuItem mi) {
-		menu.add(menuItems);
+	public static String getPurchaseList(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		ingredientname = "";
+		String output = "";
+		for (int i = 0; i < purchaseList.size(); i++) {
+			if (ingredientname.equalsIgnoreCase(purchaseList.get(i).getIngredientname()) && purchaseList != null) {
+				output += String.format("%-25s %-15s %-10.2f\n", purchaseList.get(i).getIngredientname());
+			}
+		}
+		return output;
 	}
 	
+<<<<<<< HEAD
+=======
+	public static boolean doUpdatePurchaseOrder(ArrayList<PurchaseOrder> purchase, String ingName) { // Jun Kai
+		boolean ok = false;
+		
+		for (int i = 0; i < purchaseList.size(); i++) {
+			name = purchaseList.get(i).getIngredientname();
+			
+			if (ingName.equalsIgnoreCase(ingredientname)) {
+				purchaseList.get(i).setIngredientname(ingName);
+				
+				ok = true;
+			}
+		}
+		return ok;
+	}
+	public static void updatePurchaseOrder(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+		char udItem = 'u';
 	
+		ingredientname = Helper.readString("Enter items to update > ");
+		udItem = Helper.readChar("Do you want to change/remove item? ");
+		if (udItem == 'u') {
+			for (int i = 0; i < purchaseList.size(); i++) {
+			if (ingredientname.equalsIgnoreCase(purchaseList.get(i).getIngredientname()) && purchaseList != null) {
+				String newitem = Helper.readString("Enter new item to purchase order > ");
+				purchaseList.get(i).setIngredientname(newitem);
+				System.out.println("Purchase order updated!");
+			} 
+		}
+		}
+		else {
+				for (int i = 0; i < purchase.size(); i++) {
+					if (purchase.get(i).getIngredientname().equalsIgnoreCase(ingredientname) && purchase.get(i) != null) {
+						purchase.remove(i);
+						System.out.println("Ingredient from Purchase order removed!");
+					} 
+			}
+		}
+	}
 	
-	public static void addAccount(ArrayList<Account>account) {
-	String userRole=Helper.readString("Enter userrole: ");
-	String contactNumber=Helper.readString("Enter contact number: ");
-	String studentID=Helper.readString("Enter studentid: ");
-	String username=Helper.readString("Enter username:");
-	String password=Helper.readString("Enter password:");
-	C206_CaseStudy.checkusernameAccount(account);
-	C206_CaseStudy.loginAccount(account, username, password);
-	Account Account=new Account(userRole, contactNumber, studentID, username,password);
-	account.add(Account);
-	System.out.println("Account added!");
+	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) {
+		ingredientname = Helper.readString("Enter item/ingredient to find purchase Orders: ");
+		
+		C206_CaseStudy.setHeader("Purchase list with the item selected");
+		String output = String.format("%-10s", "Ingredients");
+		output += getPurchaseList(purchaseList);
+		System.out.println(output);
+	}
+
+>>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
 }
 	
+
+
+
+	public static void addAccount(ArrayList<Account>account) {
+		String userRole=Helper.readString("Enter userrole: ");
+		String contactNumber=Helper.readString("Enter contact number: ");	
+		String studentID=Helper.readString("Enter studentid: ");
+		String username=Helper.readString("Enter username:");
+		String password=Helper.readString("Enter password:");
+		C206_CaseStudy.checkusernameAccount(account);
+		C206_CaseStudy.loginAccount(account, username, password);
+		Account Account=new Account(userRole, contactNumber, studentID, username,password);
+		account.add(Account);
+		System.out.println("Account added!");
+	}
 	public static void viewAccount(ArrayList<Account>account) {
 		Helper.line(111, "-");
 	        System.out.println("Account Menu");
