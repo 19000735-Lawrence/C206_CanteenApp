@@ -173,7 +173,7 @@ public class C206_CaseStudy {
 					
 				}	else if(purchaseOption == remPo) {
 					ingredientname = Helper.readString("Enter item from purchase Orders to remove it: ");
-					deletePurchaseOrder(purchaseList);
+					deletePurchaseOrder(purchaseList, purchaseOrders);
 					
 				} else if(purchaseOption == updatePo) {
 					updatePurchaseOrder(purchaseList);
@@ -433,8 +433,6 @@ public class C206_CaseStudy {
 		return output;
 	}
 	
-<<<<<<< HEAD
-=======
 	public static boolean doUpdatePurchaseOrder(ArrayList<PurchaseOrder> purchase, String ingName) { // Jun Kai
 		boolean ok = false;
 		
@@ -482,76 +480,4 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
-}
-	
-
-
-
-	public static void addAccount(ArrayList<Account>account) {
-		String userRole=Helper.readString("Enter userrole: ");
-		String contactNumber=Helper.readString("Enter contact number: ");	
-		String studentID=Helper.readString("Enter studentid: ");
-		String username=Helper.readString("Enter username:");
-		String password=Helper.readString("Enter password:");
-		C206_CaseStudy.checkusernameAccount(account);
-		C206_CaseStudy.loginAccount(account, username, password);
-		Account Account=new Account(userRole, contactNumber, studentID, username,password);
-		account.add(Account);
-		System.out.println("Account added!");
-	}
-	public static void viewAccount(ArrayList<Account>account) {
-		Helper.line(111, "-");
-	        System.out.println("Account Menu");
-	        String output = String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", "UserRole", "Contact Number","Student ID", "Username");
-	        Helper.line(111, "-");
-	        System.out.println(output);
-	        for(int i = 0; i < account.size(); i++) {
-	        	output+= String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n",
-	        					account.get(i).getuserRole(),
-	        					account.get(i).getcontactNumber(),
-	        					account.get(i).getstudentID(),
-	        					account.get(i).getusername());
-	        					output += String.format("%" + 111 + "s", " ").replaceAll(" ", "-");
-	        }System.out.println(output);
-	}
-	public static void deleteAccount(ArrayList<Account> account) {
-		String delaccount = Helper.readString("Enter which account to remove: ");
-		for (Account m : account) {
-			if (m.getusername().equalsIgnoreCase(delaccount)) {
-				account.remove(m);
-				System.out.println("Account have been successfully deleted!");
-				break;
-			} else {
-				System.out.println("Account does not exist!");
-			}
-		}
-
-	}
-	public static void updateAccount(ArrayList<Account> account) {
-		String updaccount = Helper.readString("Enter which account to update: ");
-			for (int i =0;i < account.size();i++) {
-		    	if (account.get(i).getusername().equals(updaccount)) {
-		    		String username = Helper.readString("Enter newusername > ");
-		    		String password = Helper.readString("Enter newpassword > ");
-		    		account.get(i).setusername(username);
-		    		account.get(i).setpassword(password);
-		    	}
-		    }
-		  }
-	public static void checkusernameAccount(ArrayList<Account> account) {
-		String username = Helper.readString("Enter unsername of your account: ");
-		for (int i =0;i < account.size();i++) {
-	    	if (account.get(i).getusername().equals(username)) {
-	    		System.out.println("This username is already taken, please use a different one");
-	    	}
-		}
-	}
-	public static void loginAccount(ArrayList<Account> account,String username, String password) {
-		for (int i =0;i < account.size();i++) {
-			if(account.get(i). getusername().equals(username) && account.get(i). getpassword().equals(password)){
-				System.out.println("You have successfully logged in to your account");
-			}
-		}
-	}
 }

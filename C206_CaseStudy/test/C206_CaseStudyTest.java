@@ -39,7 +39,7 @@ public class C206_CaseStudyTest {
 		menuItem4 = new MenuItem("Shrimp", "Seafood", 5.99);
 		menuItem5 = new MenuItem("Crab", "Seadfood", 6.99);
 		menuItem6 = new MenuItem("Salmon", "Seafood", 7.99);
-		purchaseOrders = new PurchaseOrder("");
+		purchaseOrders = new PurchaseOrder("", 0);
 		
 //		orderItem1 = new Order("Bob", "Testing", false, menuListTest);  //for ref
 //		orderItem2 = new Order("Rob", "Testing", true, menuListTest);
@@ -221,7 +221,7 @@ public class C206_CaseStudyTest {
 		purchaseListTest.add(purchaseOrders);
 		
 		C206_CaseStudy.ingredientname = "";
-		C206_CaseStudy.deletePurchaseOrder(purchaseListTest);
+		C206_CaseStudy.deletePurchaseOrder(purchaseListTest, purchaseOrders);
 		assertEquals("Test that purchaseListTest arraylist is 1", 1, purchaseListTest.size());
 	}
 	
