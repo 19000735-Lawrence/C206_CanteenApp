@@ -172,8 +172,9 @@ public class C206_CaseStudy {
 					C206_CaseStudy.addPurchaseOrder(purchaseList, pl);
 					
 				}	else if(purchaseOption == remPo) {
-					PurchaseOrder pl = deletePurchase();
-					C206_CaseStudy.deletePurchaseOrder(purchaseList, pl);
+					ingredientname = Helper.readString("Enter item from purchase Orders to remove it: ");
+					deletePurchaseOrder(purchaseList);
+					
 				} else if(purchaseOption == updatePo) {
 					updatePurchaseOrder(purchaseList);
 					
@@ -395,7 +396,7 @@ public class C206_CaseStudy {
 		return pl;
 	}
 	
-	public static void deletePurchase(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
+	public static void deletePurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
 		for (int i = 0; i < purchase.size(); i++) {
 			if (purchase.get(i).getIngredientname().equalsIgnoreCase(ingredientname) && purchase.get(i) != null) {
 				purchase.remove(i);
