@@ -370,25 +370,26 @@ public class C206_CaseStudy {
 	}
 	
 	public static PurchaseOrder addPurchase() { // Jun Kai
-		char ingredientname= 'n';
+		char polist= 'n';
 		int date = 0;
+	 
 		date = Helper.readInt("Enter date of delivery purchase: ");
-		while(ingredientname == 'n') {
+		
+		while(polist == 'n') {
 		
 		ingredientname = Helper.readString("Enter ingredient to purchase: ");
 		PurchaseOrder pl= new PurchaseOrder(ingredientname);
 		return pl;
 		
 		}
-       
-		return date;
+       System.out.println("Date of updating purchase orders: " + date);
+	return purchaseOrders;
 	}
 	
 	public static void addPurchaseOrder(ArrayList<PurchaseOrder> purchase, PurchaseOrder pl) { // Jun Kai
 		purchaseList.add(pl);
 
 		System.out.println("Purchase added!");
-		System.out.println("Date of updating purchase orders: " + date);
 		
 		
 	}
@@ -438,6 +439,8 @@ public class C206_CaseStudy {
 	}
 	
 	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) {
+		ingredientname = Helper.readString("Enter item/ingredient to find purchase Orders: ");
+		
 		C206_CaseStudy.setHeader("Purchase list with the item selected");
 		String output = String.format("%-10s", "Ingredients");
 		output += getPurchaseList(purchaseList);
