@@ -248,7 +248,7 @@ public class C206_CaseStudyTest {
 		
 		C206_CaseStudy.addPurchaseOrder(purchaseListTest, purchaseOrders);
 		
-		boolean pass = C206_CaseStudy.doUpdatePurchaseOrder(purchaseListTest, "");
+		boolean pass = C206_CaseStudy.doUpdatePurchaseOrder(purchaseListTest, "", 0);
 		assertTrue("Test if the existing menu item is updated", pass);
 	}
 	

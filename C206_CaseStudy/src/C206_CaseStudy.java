@@ -462,7 +462,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	public static boolean doUpdatePurchaseOrder(ArrayList<PurchaseOrder> purchase, String ingName) { // Jun Kai
+	public static boolean doUpdatePurchaseOrder(ArrayList<PurchaseOrder> purchase, String ingName, int podate) { // Jun Kai
 		boolean ok = false;
 
 		for (int i = 0; i < purchase.size(); i++) {
@@ -479,7 +479,7 @@ public class C206_CaseStudy {
 
 	public static void updatePurchaseOrder(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		char udItem = 'u';
-
+		
 		ingredientname = Helper.readString("Enter items to update > ");
 		udItem = Helper.readChar("Do you want to change/remove item? ");
 		if (udItem == 'u') {
@@ -498,6 +498,8 @@ public class C206_CaseStudy {
 				}
 			}
 		}
+		date = Helper.readInt("Enter date of update: ");
+		System.out.println("The date has been updated.");
 	}
 
 	public static boolean showPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase, String searchitem) { // Jun Kai
@@ -548,13 +550,14 @@ public class C206_CaseStudy {
 	public static void viewAccount(ArrayList<Account> account) { //yy
 		Helper.line(111, "-");
 		System.out.println("Account Menu");
-		String output = String.format("%-15s %-15s %-15s %-15s\n", "UserRole", "Contact Number",
+		String output = String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", "UserRole", "Contact Number",
 				"Student ID", "Username");
 		Helper.line(111, "-");
 		System.out.println(output);
 		for (int i = 0; i < account.size(); i++) {
 			output += String.format("%-15s %-15s %-15s %-15s\n", account.get(i).getuserRole(),
-					account.get(i).getcontactNumber(), account.get(i).getstudentID(), account.get(i).getusername());
+			output += String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", account.get(i).getuserRole(),
+					account.get(i).getcontactNumber(), account.get(i).getstudentID(), account.get(i).getusername()));
 			output += String.format("%" + 111 + "s", " ").replaceAll(" ", "-");
 		}
 		System.out.println(output);
@@ -564,7 +567,7 @@ public class C206_CaseStudy {
 		C206_CaseStudy.setHeader("DELETE account");
 		String account = Helper.readString("Enter the account to delete> ");
 		int i = 0;
-
+		
 		boolean valid = false;
 		for (i = 0; i < accList.size(); i++) {
 			if (accList.get(i).getstudentID().contentEquals(account)) {
