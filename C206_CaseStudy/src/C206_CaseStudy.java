@@ -104,6 +104,31 @@ public class C206_CaseStudy {
 
 			} else if (option == OPTION_ACCOUNT) {
 				// Do code for Account here
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-10s\n", "1. Add User Account", "2. View User Account", "3. Delete User Account", "4. Update User Account", "5. Login"));
+				int acctOption = Helper.readInt("Option > ");
+				int addOpt = 1;
+				int viewOpt =2;
+				int delOpt = 3;
+				int updateOpt = 4;
+				int loginOpt =5;
+				if (acctOption == addOpt) {
+					addAccount(accList);
+					
+				} else if (acctOption == viewOpt) {
+					viewAccount(accList);
+					
+				} else if (acctOption == delOpt) {
+					deleteAccount();
+					
+				} else if (acctOption == updateOpt) {
+					updateAccount(accList);
+					
+				} else if (acctOption == loginOpt) {
+					loginAccount(accList, "", "");
+					
+				} else {
+					System.out.println("Invalid Option!");
+				}
 
 			} else if (option == OPTION_ORDER) { // Lawrence
 				// Do code for Order here
@@ -507,7 +532,7 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
-	public static void addAccount(ArrayList<Account> account) {
+	public static void addAccount(ArrayList<Account> account) { //yy
 		String userRole = Helper.readString("Enter userrole: ");
 		String contactNumber = Helper.readString("Enter contact number: ");
 		String studentID = Helper.readString("Enter studentid: ");
@@ -520,7 +545,7 @@ public class C206_CaseStudy {
 		System.out.println("Account added!");
 	}
 
-	public static void viewAccount(ArrayList<Account> account) {
+	public static void viewAccount(ArrayList<Account> account) { //yy
 		Helper.line(111, "-");
 		System.out.println("Account Menu");
 		String output = String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", "UserRole", "Contact Number",
@@ -535,7 +560,7 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
-	public static void deleteaccount() {
+	public static void deleteAccount() { //yy
 		C206_CaseStudy.setHeader("DELETE account");
 		String account = Helper.readString("Enter the account to delete> ");
 		int i = 0;
@@ -557,7 +582,7 @@ public class C206_CaseStudy {
 		}
 	}
 
-	public static String dodeleteMember(ArrayList<Account> accList, String acc1) {
+	public static String dodeleteMember(ArrayList<Account> accList, String acc1) { //yy
 
 		String output = "";
 		boolean isValid = false;
@@ -582,7 +607,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	public static String updateAccount(ArrayList<Account> account) {
+	public static String updateAccount(ArrayList<Account> account) { //yy
 		String updaccount = Helper.readString("Enter which account to update: ");
 		String output = "";
 		for (int i = 0; i < account.size(); i++) {
@@ -597,7 +622,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	public static String checkusernameAccount(ArrayList<Account> account) {
+	public static String checkusernameAccount(ArrayList<Account> account) { //yy
 		String username = Helper.readString("Enter unsername of your account: ");
 		String output = "";
 		for (int i = 0; i < account.size(); i++) {
@@ -608,7 +633,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 
-	public static String loginAccount(ArrayList<Account> account, String username, String password) {
+	public static String loginAccount(ArrayList<Account> account, String username, String password) { //yy
 		String output = "";
 		for (int i = 0; i < account.size(); i++) {
 			if (account.get(i).getusername().equals(username) && account.get(i).getpassword().equals(password)) {
