@@ -222,7 +222,7 @@ public class C206_CaseStudyTest {
 		
 		C206_CaseStudy.ingredientname = "";
 		C206_CaseStudy.deletePurchaseOrder(purchaseListTest, purchaseOrders);
-		assertEquals("Test that purchaseListTest arraylist is 1", 1, purchaseListTest.size());
+		assertEquals("Test that purchaseListTest arraylist is 0", 0, purchaseListTest.size());
 	}
 	
 	
