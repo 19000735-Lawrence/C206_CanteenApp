@@ -447,7 +447,7 @@ public class C206_CaseStudy {
 		}
 		return ok;
 	}
-	public static void updatePurchaseList(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+	public static void updatePurchaseOrder(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		char udItem = 'u';
 	
 		ingredientname = Helper.readString("Enter items to update > ");
