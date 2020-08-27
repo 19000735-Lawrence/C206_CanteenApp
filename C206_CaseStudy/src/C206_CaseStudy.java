@@ -18,11 +18,12 @@ public class C206_CaseStudy {
 	
 	
 	public static ArrayList<MenuItem> menuItem;
-	
+	public static ArrayList<Promotion> promoList;
 	public static ArrayList<Order> orderList;
 	public static ArrayList<MenuItem> orderInput;
 	public static Order orderItem;
 	public static MenuItem menuItems;
+	public static Promotion promoItem;
 	
 	public static String userName;
 	public static String status;
@@ -35,7 +36,7 @@ public class C206_CaseStudy {
 		menuItem = new ArrayList<MenuItem>();
 		orderList = new ArrayList<Order>();
 		orderInput = new ArrayList<MenuItem>();
-		
+		promoList = new ArrayList<Promotion>();
 		
 		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
 		menuItem.add(new MenuItem("Crab", "Sea Food", 5.99));
@@ -106,6 +107,7 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
+				
 				
 			} else if(option == OPTION_USERTYPE) {
 				while(userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {

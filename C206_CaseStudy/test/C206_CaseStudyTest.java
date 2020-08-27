@@ -11,17 +11,22 @@ public class C206_CaseStudyTest {
 	
 	private static ArrayList<Order> orderListTest;
 	private static ArrayList<MenuItem> menuListTest;
+	private static ArrayList<Promotion> promoListTest;
 	
 	private static MenuItem menuItem1;
 	private static MenuItem menuItem2;
 	
 	private static Order orderItem1;
 	private static Order orderItem2;
+	
+	private static Promotion promoItem1;
+	private static Promotion promoItem2;
 
 	@Before
 	public void setUp() throws Exception {
 		orderListTest = new ArrayList<Order>();
 		menuListTest = new ArrayList<MenuItem>();
+		promoListTest = new ArrayList<Promotion>();
 		
 		menuItem1 = new MenuItem("Cheese Burger", "Fast Food", 3.99);
 		menuItem2 = new MenuItem("Crab", "Sea Food", 5.99);
@@ -29,6 +34,9 @@ public class C206_CaseStudyTest {
 //		orderItem1 = new Order("Bob", "Testing", false, menuListTest);  //for ref
 //		orderItem2 = new Order("Rob", "Testing", true, menuListTest);
 		
+		promoItem1 = new Promotion("Chicken Burger", "Fast Food", 2.00);
+		
+	
 	}
 
 	@After
@@ -123,5 +131,7 @@ public class C206_CaseStudyTest {
 		
 		
 	}
+	
+	
 	
 }
