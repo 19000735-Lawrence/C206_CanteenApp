@@ -469,6 +469,26 @@ public class C206_CaseStudy {
 		}
 	}
 	
+	public static boolean showPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase, String searchitem) { // Jun Kai
+		boolean findItem = false;
+		
+		String output = String.format("%-25s %-15s", "ingredientname");
+		ingredientname = ""; 
+		
+		for (int i = 0; i < menuItem.size(); i++) {
+			ingredientname = purchaseList.get(i).getIngredientname();
+			date = purchaseList.get(i).getDate();
+			
+			if (searchitem == ingredientname) {
+				output += String.format("%-25s", ingredientname);
+				
+				findItem = true;
+			}
+		}
+		System.out.println(output);
+		return findItem;
+	}
+	
 	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		ingredientname = Helper.readString("Enter item/ingredient to find purchase Orders: ");
 		String output = String.format("%-10s\n", "Ingrdient Name");

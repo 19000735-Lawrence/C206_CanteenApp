@@ -239,6 +239,32 @@ public class C206_CaseStudyTest {
 		assertEquals("Test that the purchaseListTest arraylist is 1", 1, purchaseListTest.size());
 	}
 	
+	@Test
+	public void updatePurchaseOrderTest() { // Jun Kai
+		
+		assertNotNull("Test if there is valid arrylist to update from", purchaseListTest);
+		
+		C206_CaseStudy.addPurchaseOrder(purchaseListTest, purchaseOrders);
+		
+		boolean pass = C206_CaseStudy.doUpdatePurchaseOrder(purchaseListTest, "");
+		assertTrue("Test if the existing menu item is updated", pass);
+	}
+	
+	@Test
+	public void viewPurchaseOrderByItemTest() { // Jun Kai
+		
+		assertNotNull("Test if there is valid arraylist to retrieve item from", purchaseListTest);
+		
+		C206_CaseStudy.addPurchaseOrder(purchaseListTest, purchaseOrders);
+		assertEquals("Test that menuListTest arraylist is 1", 1, purchaseListTest.size());
+		
+		Boolean pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest);
+		assertTrue("Test if the purchase order is correctly display according to the Item", pass);
+		
+		pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest);
+		assertFalse("Test if purchase order is display correctly by the Item", pass);
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 	}
