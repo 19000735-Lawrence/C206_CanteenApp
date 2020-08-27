@@ -258,10 +258,10 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addPurchaseOrder(purchaseListTest, purchaseOrders);
 		assertEquals("Test that menuListTest arraylist is 1", 1, purchaseListTest.size());
 		
-		Boolean pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest);
+		Boolean pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest, "");
 		assertTrue("Test if the purchase order is correctly display according to the Item", pass);
 		
-		pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest);
+		pass = C206_CaseStudy.showPurchaseOrderByItem(purchaseListTest, "");
 		assertFalse("Test if purchase order is display correctly by the Item", pass);
 	}
 	

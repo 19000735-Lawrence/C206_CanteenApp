@@ -434,7 +434,7 @@ public class C206_CaseStudy {
 	public static boolean doUpdatePurchaseOrder(ArrayList<PurchaseOrder> purchase, String ingName) { // Jun Kai
 		boolean ok = false;
 		
-		for (int i = 0; i < purchaseList.size(); i++) {
+		for (int i = 0; i < purchase.size(); i++) {
 			name = purchaseList.get(i).getIngredientname();
 			
 			if (ingName.equalsIgnoreCase(ingredientname)) {
@@ -468,17 +468,17 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	public static boolean showPurchaseOrderByItem(ArrayList<MenuItem> purchase, String searchitem) { // Jun Kai
+	public static boolean showPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase, String searchitem) { // Jun Kai
 		boolean findItem = false;
 		
-		String output = String.format("%-25s", "Ingredient Name");
+		String output = String.format("%-25s\n", "Ingredient Name");
 		ingredientname = "";
 
 		for (int i = 0; i < purchaseList.size(); i++) {
 			ingredientname = purchaseList.get(i).getIngredientname();
 			
-			if (searchitem == ingredientname) {
-				output += String.format("%-25s", ingredientname);
+			if (searchitem.equalsIgnoreCase(ingredientname)) {
+				output += String.format("%-25s\n", ingredientname);
 				
 				findItem = true;
 			}
