@@ -17,6 +17,8 @@ public class C206_CaseStudyTest {
 	private static MenuItem menuItem2;
 	private static MenuItem menuItem3;
 	private static MenuItem menuItem4;
+	private static MenuItem menuItem5;
+	private static MenuItem menuItem6;
 	
 	private static Order orderItem1;
 	private static Order orderItem2;
@@ -32,9 +34,11 @@ public class C206_CaseStudyTest {
 		purchaseListTest = new ArrayList<PurchaseOrder>();
 		
 		menuItem1 = new MenuItem("Chicken Burger", "Fast Food", 2.99);
-		menuItem2 = new MenuItem("Cheese Burger", "Fast Food", 3.99);
-		menuItem3 = new MenuItem("Crab", "Sea Food", 5.99);
-		menuItem4 = new MenuItem("Salmon", "Seafood", 6.99);
+		menuItem2 = new MenuItem("Fish Burger", "Fast Food", 3.99);
+		menuItem3 = new MenuItem("Cheese Burger", "Fast Food", 4.99);
+		menuItem4 = new MenuItem("Shrimp", "Seafood", 5.99);
+		menuItem5 = new MenuItem("Crab", "Seadfood", 6.99);
+		menuItem6 = new MenuItem("Salmon", "Seafood", 7.99);
 		purchaseOrders = new PurchaseOrder("");
 		
 //		orderItem1 = new Order("Bob", "Testing", false, menuListTest);  //for ref
@@ -162,7 +166,7 @@ public class C206_CaseStudyTest {
 		menuListTest.add(menuItem1);
 		menuListTest.add(menuItem2);
 		
-		C206_CaseStudy.name = "Crab";
+		C206_CaseStudy.name = "Fish Burger";
 		C206_CaseStudy.deleteMenuItem(menuListTest);
 		assertEquals("Test that menuListTest arraylist is 1", 1, menuListTest.size());
 	}
@@ -174,12 +178,12 @@ public class C206_CaseStudyTest {
 		
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
 		
-		boolean pass = C206_CaseStudy.doUpdateMenuItem(menuListTest, "Crab", 5.99);
+		boolean pass = C206_CaseStudy.doUpdateMenuItem(menuListTest, "Fish Burger", 3.99);
 		assertTrue("Test if the existing menu item is updated", pass);
 	}
 	
 	@Test
-	public void viewMenuByCategoryTest() {
+	public void viewMenuByPriceRangeTest() { // Keagan
 		
 		assertNotNull("Test if there is valid arraylist to retrieve item from", menuListTest);
 		
@@ -187,6 +191,15 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem2);
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem3);
 		C206_CaseStudy.addMenuItem(menuListTest, menuItem4);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem5);
+		C206_CaseStudy.addMenuItem(menuListTest, menuItem6);
+		assertEquals("Test that menuListTest arraylist is 6", 6, menuListTest.size());
+		
+		Boolean pass = C206_CaseStudy.showMenuItemByPriceRange(menuListTest, 2.00, 5.00);
+		assertTrue("Test if menu items price falls under the range between $2 and $5", pass);
+		
+		pass = C206_CaseStudy.showMenuItemByPriceRange(menuListTest, 8.00, 9.00);
+		assertFalse("Test if menu items price falls under the range between $8 and $9", pass);
 	}
 	
 	@Test

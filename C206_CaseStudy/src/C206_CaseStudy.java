@@ -45,10 +45,12 @@ public class C206_CaseStudy {
 		orderInput = new ArrayList<MenuItem>();
 		purchaseList = new ArrayList<PurchaseOrder>();
 		
-		menuItem.add(new MenuItem("Chicken Burger", "Fast Food", 2.99));
-		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
-		menuItem.add(new MenuItem("Crab", "Seafood", 5.99));
-		menuItem.add(new MenuItem("Salmon", "Seafood", 6.99));
+		menuItem.add(new MenuItem("Chicken Burger", "Fast Food", 2.50));
+		menuItem.add(new MenuItem("Fish Burger", "Fast Food", 3.50));
+		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 4.50));
+		menuItem.add(new MenuItem("Shrimp", "Seafood", 5.50));
+		menuItem.add(new MenuItem("Crab", "Seafood", 6.50));
+		menuItem.add(new MenuItem("Salmon", "Seafood", 7.50));
 		
 		int option = 0;
 		
@@ -68,13 +70,13 @@ public class C206_CaseStudy {
 			if(option == OPTION_MENUITEM) { // Keagan
 				//Do code for Menu Item here
 				C206_CaseStudy.setHeader("OPTIONS");
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item", "4. Update Menu Item", "5. View Menu Item By Category"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-10s", "1. View All Menu Items", "2. Add Menu Item", "3. Delete Menu Item", "4. Update Menu Item", "5. View Menu Item By Price Range"));
 				int menuOption = Helper.readInt("Option > ");
 				int viewMenu = 1;
 				int addMenu = 2;
 				int delMenu = 3;
 				int updateMenu = 4;
-				int viewMenuByCategory = 5;
+				int viewMenuByPriceRange = 5;
 				if (menuOption == viewMenu) {
 					viewAllMenuItems(menuItem);
 					
@@ -89,8 +91,8 @@ public class C206_CaseStudy {
 				} else if (menuOption == updateMenu) {
 					updateMenuItem(menuItem);
 				
-				} else if (menuOption == viewMenuByCategory) {
-					viewMenuItemByCategory(menuItem);
+				} else if (menuOption == viewMenuByPriceRange) {
+					viewMenuItemByPriceRange(menuItem);
 					
 				} else {
 					System.out.println("Invalid choice");
@@ -325,49 +327,44 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	public static String getMenuItems1(ArrayList<MenuItem> menuItem) { // Keagan
-		category = "Fast Food";
-		String output = "";
-		for (int i = 0; i < menuItem.size(); i++) {
-			if (category.equalsIgnoreCase(menuItem.get(i).getCategory()) && menuItem != null) {
-				output += String.format("%-25s %-15s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), menuItem.get(i).getPrice());
-			}
-		}
-		return output;
-	}
-	
-	public static String getMenuItems2(ArrayList<MenuItem> menuItem) { // Keagan
-		category = "Seafood";
-		String output = "";
-		for (int i = 0; i < menuItem.size(); i++) {
-			if (category.equalsIgnoreCase(menuItem.get(i).getCategory()) && menuItem != null) {
-				output += String.format("%-25s %-15s %-10.2f\n", menuItem.get(i).getName(), menuItem.get(i).getCategory(), menuItem.get(i).getPrice());
-			}
-		}
-		return output;
-	}
-	
-	public static void viewMenuItemByCategory(ArrayList<MenuItem> menuItem) { // Keagan
-//		category = Helper.readString("Enter category > ");
-//		
-//		if (category.equalsIgnoreCase("Fast Food")) {
-//			C206_CaseStudy.setHeader("MENU ITEM LIST BY CATEGORY");
-//			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
-//			output += getMenuItems1(menuItem);
-//			System.out.println(output);
-//			
-//		} else if (category.equalsIgnoreCase("Seafood")) {
-//			C206_CaseStudy.setHeader("MENU ITEM LIST BY CATEGORY");
-//			String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
-//			output += getMenuItems2(menuItem);
-//			System.out.println(output);
-//		}
+	public static boolean showMenuItemByPriceRange(ArrayList<MenuItem> menuItem, double minPrice, double maxPrice) {
+		boolean viewPR = false;
 		
-		C206_CaseStudy.setHeader("MENU ITEM LIST BY CATEGORY");
 		String output = String.format("%-25s %-15s %-10s\n", "NAME", "CATEGORY", "PRICE");
-		output += getMenuItems1(menuItem);
-		output += getMenuItems2(menuItem);
+		name = "";
+		category = "";
+		
+		for (int i = 0; i < menuItem.size(); i++) {
+			name = menuItem.get(i).getName();
+			category = menuItem.get(i).getCategory();
+			price = menuItem.get(i).getPrice();
+			
+			if (minPrice < price && maxPrice > price) {
+				output += String.format("%-25s %-15s %-10.2f\n", name, category, price);
+				
+				viewPR = true;
+			}
+		}
 		System.out.println(output);
+		return viewPR;
+	}
+	
+	public static void viewMenuItemByPriceRange(ArrayList<MenuItem> menuItem) { // Keagan
+		C206_CaseStudy.viewAllMenuItems(menuItem);
+		C206_CaseStudy.setHeader("MENU ITEM LIST BY PRICE RANGE");
+		
+		if (!menuItem.isEmpty()) {
+			double minPrice = Helper.readDouble("Enter minimum price > ");
+			double maxPrice = Helper.readDouble("Enter maximum price > ");
+			
+			boolean viewPR = showMenuItemByPriceRange(menuItem, minPrice, maxPrice);
+			if (viewPR == false) {
+				System.out.println("No menu items falls under this range!");
+				
+			} else {
+				System.out.println("List of menu items falls under this range");
+			}
+		}
 	}
 	
 	public static PurchaseOrder addPurchase() { // Jun Kai
