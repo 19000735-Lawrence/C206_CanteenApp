@@ -406,20 +406,35 @@ public class C206_CaseStudy {
 	}
 	
 	public static String retrievePurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
+//		String output = "";
+//		for (int i = 0; i < purchase.size(); i++) {
+//				output = String.format("%-5d\n%-15s", i+1, purchase.get(i).toString()); 
+//			}
+//		}
+//		return output;
+		
+		
 		String output = "";
 		for (int i = 0; i < purchase.size(); i++) {
-			output = String.format("%-10s", purchase.get(i).getIngredientname()); 
+			if (purchase.get(i) != null) {
+				output = String.format("%-5d %-15s\n", i+1, purchase.get(i).getIngredientname()); 
+			}
 		}
 		return output;
 	}
 	
 	public static void viewAllPurchaseOrders(ArrayList<PurchaseOrder> purchase) { // Jun Kai
-		for (int i = 0; i < purchaseList.size(); i++) {
-			C206_CaseStudy.setHeader("Purchase Order LIST");
-			String output = String.format("%-10s", "Ingredients");
-			output += retrievePurchaseOrders(purchaseList);
-			System.out.println(output);
-		}
+		C206_CaseStudy.setHeader("PURCHASE ORDER LIST");
+		String output = String.format("%-5s %-10s\n", "No.", "Ingredient Name");
+		output += retrievePurchaseOrders(purchase);
+		System.out.println(output);
+		
+//		for (int i = 0; i < purchaseList.size(); i++) {
+//			C206_CaseStudy.setHeader("Purchase Order LIST");
+//			String output = String.format("%-10s", "Ingredients");
+//			output += retrievePurchaseOrders(purchaseList);
+//			System.out.println(output);
+//		}
 	}
 	
 	public static String getPurchaseList(ArrayList<PurchaseOrder> purchase) { // Jun Kai
