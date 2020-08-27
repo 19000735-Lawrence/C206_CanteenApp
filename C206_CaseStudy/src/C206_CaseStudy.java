@@ -468,7 +468,6 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	
 	public static boolean showPurchaseOrderByItem(ArrayList<MenuItem> purchase, String searchitem) { // Jun Kai
 		boolean findItem = false;
 		
