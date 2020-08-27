@@ -157,7 +157,7 @@ public class C206_CaseStudy {
 				
 			} else if(option == OPTION_PURCHASEORDER) { // Jun Kai
 				//Do code for Purchase Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
+				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-10s", "1. Add Purchase List", "2. Delete Purchase List", "3. View Purchase List", "4. Update Purchase List", "5. Search Purchase List by Items"));
 				int purchaseOption = Helper.readInt("Option > ");
 				int addPo = 1;
 				int remPo = 2;
@@ -471,11 +471,19 @@ public class C206_CaseStudy {
 	
 	public static void viewPurchaseOrderByItem(ArrayList<PurchaseOrder> purchase) { // Jun Kai
 		ingredientname = Helper.readString("Enter item/ingredient to find purchase Orders: ");
+		String output = String.format("%-10s\n", "Ingrdient Name");
+		C206_CaseStudy.setHeader("PURCHASE LIST WITH THE ITEM SELECTED");
 		
-		C206_CaseStudy.setHeader("Purchase list with the item selected");
-		String output = String.format("%-10s", "Ingredients");
-		output += getPurchaseList(purchaseList);
+		for (int i = 0; i < purchase.size(); i++) {
+			if (ingredientname.equalsIgnoreCase(purchase.get(i).getIngredientname())) {
+				output += purchase.get(i).getIngredientname();
+			}
+		}
 		System.out.println(output);
+		
+//		String output = String.format("%-10s\n", "Ingredients");
+//		output += getPurchaseList(purchaseList);
+//		System.out.println(output);
 	}
 
 }
