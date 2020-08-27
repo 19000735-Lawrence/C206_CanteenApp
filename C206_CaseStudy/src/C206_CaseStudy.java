@@ -17,24 +17,22 @@ public class C206_CaseStudy {
 	public static int userOption = 0;
 
 	public static ArrayList<MenuItem> menuItem;
-<<<<<<< HEAD
 	public static ArrayList<Promotion> promoList;
-=======
 
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
+
+
 	public static ArrayList<Order> orderList;
 	public static ArrayList<MenuItem> orderInput;
 	public static ArrayList<PurchaseOrder> purchaseList;
 	private static ArrayList<Account> accList;
 	public static Order orderItem;
-<<<<<<< HEAD
 	public static MenuItem menuItems;
 	public static Promotion promoItem;
 	
-=======
+
 	public static PurchaseOrder purchaseOrders;
 
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
+
 	public static String userName;
 	public static String status;
 	public static boolean takeAway;
@@ -51,13 +49,12 @@ public class C206_CaseStudy {
 		menuItem = new ArrayList<MenuItem>();
 		orderList = new ArrayList<Order>();
 		orderInput = new ArrayList<MenuItem>();
-<<<<<<< HEAD
 		promoList = new ArrayList<Promotion>();
 		
 		menuItem.add(new MenuItem("Cheese Burger", "Fast Food", 3.99));
 		menuItem.add(new MenuItem("Crab", "Sea Food", 5.99));
 		
-=======
+
 		purchaseList = new ArrayList<PurchaseOrder>();
 		accList = new ArrayList<Account>();
 
@@ -70,7 +67,6 @@ public class C206_CaseStudy {
 		menuItem.add(new MenuItem("Crab", "Seafood", 6.50));
 		menuItem.add(new MenuItem("Salmon", "Seafood", 7.50));
 
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
 		int option = 0;
 
 		while (userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
@@ -120,37 +116,7 @@ public class C206_CaseStudy {
 
 				}
 				
-				
-			} else if(option == OPTION_ACCOUNT) {
-				int optionaccount = Helper.readInt("Option > ");
-				if (optionaccount == 1) {
-				    C206_CaseStudy.addAccount(accList);
-
-				}else if (optionaccount == 2) {
-					C206_CaseStudy.viewAccount(accList);
-					
-				}else if (optionaccount == 3 ) {
-					C206_CaseStudy.deleteAccount();
-					
-				}else if (optionaccount == 4 ) {
-					C206_CaseStudy.updateAccount(accList);
-				
-				}else if (optionaccount == 5 ) {
-					C206_CaseStudy.checkusernameAccount(accList);
-					
-				}else if (optionaccount == 6 ) {
-					String username=Helper.readString("Enter username :");
-					String password=Helper.readString("Enter password:");
-					C206_CaseStudy.loginAccount(accList,username,password);
-				}
-				
 						
-				
-			} else if(option == OPTION_ORDER) { // Lawrence
-				//Do code for Order here
-				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-20s", "1. Add Order", "2. Delete Order", "3. View All Orders", "4. Update Order Status", "any other no. to cancel"));
-
-
 			} else if (option == OPTION_ACCOUNT) {
 				// Do code for Account here
 				System.out.println(String.format("%-10s\n%-10s\n%-10s\n%-10s\n%-10s\n", "1. Add User Account", "2. View User Account", "3. Delete User Account", "4. Update User Account", "5. Login"));
@@ -231,11 +197,8 @@ public class C206_CaseStudy {
 				} else {
 					System.out.println("Invalid Choice!");
 				}
-<<<<<<< HEAD
 				
 				
-			} else if(option == OPTION_PURCHASEORDER) {
-				//Do code for Purchase Order here
 				
 			} else if(option == OPTION_PROMOTION) {
 				//Do code for Promotion here
@@ -283,9 +246,6 @@ public class C206_CaseStudy {
 					
 				}
 				
-			} else if(option == OPTION_USERTYPE) {
-				while(userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
-=======
 
 			} else if (option == OPTION_PURCHASEORDER) { // Jun Kai
 				// Do code for Purchase Order here
@@ -317,12 +277,10 @@ public class C206_CaseStudy {
 
 				}
 
-			} else if (option == OPTION_PROMOTION) {
-				// Do code for Promotion here
 
 			} else if (option == OPTION_USERTYPE) { // Lawrence
 				while (userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
+
 					userTypeMenu();
 					userOption = Helper.readInt("Enter User type > ");
 					if (userOption != CUSTOMER && userOption != STALL_STAFF && userOption != CANTEEN_ADMIN) {
@@ -454,11 +412,7 @@ public class C206_CaseStudy {
 		}
 		return ok;
 	}
-<<<<<<< HEAD
-	
-	
-	
-=======
+
 
 	public static void updateMenuItem(ArrayList<MenuItem> menuItem) { // Keagan
 		name = Helper.readString("Enter menu name > ");
@@ -755,5 +709,4 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
->>>>>>> branch 'master' of https://github.com/19000735-Lawrence/C206_CanteenApp.git
 }
